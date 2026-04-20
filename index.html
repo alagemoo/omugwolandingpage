@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Omugwo — Trusted postpartum care for Nigerian mothers. Find screened caregivers, access expert guidance, and receive the support you deserve after birth." />
+  <title>Omugwo — Trusted Postpartum Care, Right at Home</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+</head>
+<body>
+
+<!-- ============================================
+     HERO — Full-bleed with floating pill nav
+     ============================================ -->
+<section class="hero" id="home" aria-label="Hero">
+
+  <!-- Hero image slider -->
+  <div class="hero__slider" aria-hidden="true">
+    <!--
+      HOW TO ADD YOUR IMAGES:
+      Replace each .hero__slide-img placeholder div with:
+      <img src="images/hero-1.jpg" alt="" class="hero__slide-img" />
+
+      Recommended: 3 photos, all featuring mothers/babies/caregivers.
+      Aspect: wide landscape, subject right-center. Warm tones.
+    -->
+    <div class="hero__slide hero__slide--active">
+      <div class="hero__slide-img hero__slide-placeholder">
+          <img src="images/hero1.png" alt="" class="hero__slide-img" />
+      </div>
+    </div>
+    <div class="hero__slide">
+      <div class="hero__slide-img hero__slide-placeholder" style="background:linear-gradient(135deg,#5C4430,#3A2A1C,#B89A80);">
+        <img src="images/hero2.jpg" alt="" class="hero__slide-img" />
+      </div>
+    </div>
+    <div class="hero__slide">
+      <div class="hero__slide-img hero__slide-placeholder" style="background:linear-gradient(135deg,#4A3A2A,#2C2016,#8A7060);">
+        <img src="images/hero3.jpg" alt="" class="hero__slide-img" />
+      </div>
+    </div>
+    <div class="hero__slide">
+      <div class="hero__slide-img hero__slide-placeholder" style="background:linear-gradient(135deg,#4A3A2A,#2C2016,#8A7060);">
+        <img src="images/hero4.png" alt="" class="hero__slide-img" />
+      </div>
+    </div>
+    <div class="hero__slide">
+      <div class="hero__slide-img hero__slide-placeholder" style="background:linear-gradient(135deg,#4A3A2A,#2C2016,#8A7060);">
+        <img src="images/hero5.png" alt="" class="hero__slide-img" />
+      </div>
+    </div>
+    
+    <!-- Overlay gradient for text readability -->
+    <div class="hero__bg-overlay"></div>
+
+    <!-- Slider dots -->
+    <div class="hero__slider-dots" aria-label="Slide indicators">
+      <button class="hero__dot hero__dot--active" data-slide="0" aria-label="Go to slide 1"></button>
+      <button class="hero__dot" data-slide="1" aria-label="Go to slide 2"></button>
+      <button class="hero__dot" data-slide="2" aria-label="Go to slide 3"></button>
+      <button class="hero__dot" data-slide="3" aria-label="Go to slide 4"></button>
+      <button class="hero__dot" data-slide="4" aria-label="Go to slide 5"></button>
+    </div>
+  </div>
+
+  <!-- Floating pill navbar (lives inside hero) -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__pill">
+
+        <a href="/" class="nav__logo" aria-label="Omugwo Home">
+          <img src="assets/logo1.svg" alt="" class="nav__logo-img" width="28" height="28" />
+          <span class="nav__logo-text">Omugwo</span>
+        </a>
+
+        <ul class="nav__links" role="list">
+          <li><a href="#find-care" class="nav__link">Find Care</a></li>
+          <li><a href="#services" class="nav__link">Services</a></li>
+          <li><a href="#contact" class="nav__link">Contact</a></li>
+          <li><a href="#about" class="nav__link">About</a></li>
+        </ul>
+
+        <div class="nav__actions">
+          <a href="#get-started" class="btn btn--rust btn--sm">Get Started</a>
+        </div>
+
+        <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="nav__mobile" role="dialog" aria-label="Mobile navigation">
+    <ul role="list">
+      <li><a href="#find-care" class="nav__link">Find Care</a></li>
+      <li><a href="#services" class="nav__link">Services</a></li>
+      <li><a href="#contact" class="nav__link">Contact</a></li>
+      <li><a href="#about" class="nav__link">About</a></li>
+    </ul>
+    <div style="display:flex;flex-direction:column;gap:1rem;margin-top:auto;">
+      <a href="#waitlist" class="btn btn--outline">Join Waitlist</a>
+      <a href="#get-started" class="btn btn--rust">Get Started</a>
+    </div>
+  </div>
+
+  <!-- Hero copy — bottom-left overlay -->
+  <div class="hero__content">
+    <h1 class="hero__headline reveal">
+      Trusted care for you and your baby,<br>
+      right at home
+    </h1>
+
+    <p class="hero__subtext reveal reveal-delay-1">
+      Find experienced, verified caregivers to support you before and after childbirth, anywhere in Nigeria.
+    </p>
+
+    <div class="hero__actions reveal reveal-delay-2">
+      <a href="#waitlist" class="btn btn--rust btn--lg">Join the waitlist</a>
+      <a href="#find-care" class="btn btn--ghost-white btn--lg">Become a caregiver</a>
+    </div>
+
+    <div class="hero__badges reveal reveal-delay-3">
+      <span class="hero__badge">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <circle cx="7.5" cy="7.5" r="7.5" fill="#7A9E7E"/>
+          <path d="M4.5 7.5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Verified caregivers
+      </span>
+      <span class="hero__badge">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <circle cx="7.5" cy="7.5" r="7.5" fill="#7A9E7E"/>
+          <path d="M4.5 7.5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Affordable options
+      </span>
+    </div>
+  </div>
+
+</section>
+
+<!-- Newsletter float — sits outside hero, overlaps via negative margin -->
+<div class="newsletter-float">
+  <div class="container">
+    <div class="newsletter-float__card">
+      <h3 class="newsletter-float__title">Subscribe to our Newsletter</h3>
+      <p class="newsletter-float__sub">Be the first to get the support you deserve, important information and tips that can ease your motherhood journey</p>
+      <form class="newsletter-float__form newsletter-form" aria-label="Email newsletter">
+        <div class="newsletter-float__row">
+          <label for="nl-email" class="sr-only">Email address</label>
+          <input id="nl-email" type="email" class="newsletter-float__input" placeholder="Enter your email" autocomplete="email" required />
+          <button type="submit" class="btn btn--rust">Subscribe</button>
+        </div>
+        <p class="newsletter-float__disclaimer">No spam. Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================
+     PROBLEM SECTION
+     ============================================ -->
+<section class="problem" id="about" aria-label="The problem we solve">
+  <div class="container">
+    <div class="problem__inner">
+
+      <div>
+        <p class="problem__label reveal">The Problem</p>
+        <h2 class="problem__headline reveal reveal-delay-1">
+          Motherhood shouldn't feel <em>overwhelming</em>
+        </h2>
+        <p class="problem__intro reveal reveal-delay-2">
+          The weeks after birth are sacred — yet so many Nigerian mothers navigate them without the reliable support they deserve. Whether you're a first-time mum or growing your family, the gaps are real.
+        </p>
+
+        <ul class="problem__pain-list" role="list">
+          <li class="problem__pain-item reveal reveal-delay-1">
+            <div class="problem__pain-icon" aria-hidden="true">🔍</div>
+            <div>
+              <p class="problem__pain-title">No reliable help after delivery</p>
+              <p class="problem__pain-text">Finding trustworthy postpartum support in Nigeria is time-consuming, informal, and often unreliable — with no standard vetting process.</p>
+            </div>
+          </li>
+          <li class="problem__pain-item reveal reveal-delay-2">
+            <div class="problem__pain-icon" aria-hidden="true">👩‍👧</div>
+            <div>
+              <p class="problem__pain-title">Family support isn't always available</p>
+              <p class="problem__pain-text">Modern life means grandmothers and relatives are often far away or unavailable. The traditional omugwo support system has broken down for many families.</p>
+            </div>
+          </li>
+          <li class="problem__pain-item reveal reveal-delay-3">
+            <div class="problem__pain-icon" aria-hidden="true">📋</div>
+            <div>
+              <p class="problem__pain-title">Hiring help feels risky and expensive</p>
+              <p class="problem__pain-text">Without a trusted platform, hiring a caregiver means navigating unverified referrals and hoping for the best — at a critical, vulnerable time.</p>
+            </div>
+          </li>
+          <li class="problem__pain-item reveal reveal-delay-4">
+            <div class="problem__pain-icon" aria-hidden="true">🍼</div>
+            <div>
+              <p class="problem__pain-title">New mothers carry too much alone</p>
+              <p class="problem__pain-text">Sleep deprivation, breastfeeding challenges, postpartum mood changes — without proper support, recovery becomes a struggle instead of a season of joy.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div style="margin-top:2.5rem;" class="reveal">
+          <a href="#get-started" class="btn btn--primary btn--lg">Find Your Support</a>
+        </div>
+      </div>
+
+      <div class="problem__image-stack" aria-hidden="true">
+        <div class="problem__img-main img-placeholder">
+          <span>📸</span><span>Mother &amp; newborn photo</span>
+        </div>
+        <div class="problem__img-secondary img-placeholder">
+          <span>📸</span><span>Caregiver with baby</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     HOW IT WORKS
+     ============================================ -->
+<section class="how-it-works" id="how-it-works" aria-label="How Omugwo works">
+  <div class="how-it-works__bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="how-it-works__header">
+      <p class="how-it-works__label reveal">Simple &amp; Seamless</p>
+      <h2 class="how-it-works__headline reveal reveal-delay-1">
+        Care in four <em>simple steps</em>
+      </h2>
+    </div>
+
+    <div class="how-it-works__steps" role="list">
+      <div class="how-it-works__connector" aria-hidden="true"></div>
+
+      <div class="step reveal" role="listitem">
+        <div class="step__number" aria-hidden="true">01</div>
+        <span class="step__icon" aria-hidden="true">🔍</span>
+        <h3 class="step__title">Search</h3>
+        <p class="step__text">Browse verified postpartum caregivers in your area based on your specific needs, language, and budget.</p>
+      </div>
+
+      <div class="step reveal reveal-delay-1" role="listitem">
+        <div class="step__number" aria-hidden="true">02</div>
+        <span class="step__icon" aria-hidden="true">✅</span>
+        <h3 class="step__title">Choose</h3>
+        <p class="step__text">Review caregiver profiles, read testimonials, and select the perfect match for your family with confidence.</p>
+      </div>
+
+      <div class="step reveal reveal-delay-2" role="listitem">
+        <div class="step__number" aria-hidden="true">03</div>
+        <span class="step__icon" aria-hidden="true">📅</span>
+        <h3 class="step__title">Book</h3>
+        <p class="step__text">Schedule care directly through the app — flexible hours, transparent pricing, and easy rescheduling.</p>
+      </div>
+
+      <div class="step reveal reveal-delay-3" role="listitem">
+        <div class="step__number" aria-hidden="true">04</div>
+        <span class="step__icon" aria-hidden="true">🏠</span>
+        <h3 class="step__title">Receive Care</h3>
+        <p class="step__text">Your caregiver arrives ready to support you — from newborn care and breastfeeding guidance to household help and emotional support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     SERVICES SECTION
+     ============================================ -->
+<section class="services" id="services" aria-label="Our services">
+  <div class="container">
+    <div class="services__header">
+      <p class="services__label reveal">What We Offer</p>
+      <h2 class="services__headline reveal reveal-delay-1">
+        A wide range of<br><em>postpartum care</em>
+      </h2>
+      <p class="services__subtext reveal reveal-delay-2">
+        Every mother's journey is unique. Omugwo offers a comprehensive suite of services designed to meet you exactly where you are — physically, emotionally, and culturally.
+      </p>
+    </div>
+
+    <div class="services__layout">
+      <div class="service-card service-card--featured reveal">
+        <div class="service-card__img img-placeholder" style="aspect-ratio:4/3;background:rgba(160,80,58,0.7);">
+          <span>📸</span><span>Newborn care photo</span>
+        </div>
+        <div class="service-card__body">
+          <div class="service-card__icon" aria-hidden="true">👶</div>
+          <h3 class="service-card__title">Newborn Care</h3>
+          <p class="service-card__text">Expert care for your newborn — bathing, feeding support, sleep routines, and developmental monitoring by trained caregivers who understand Nigerian postpartum traditions.</p>
+        </div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-card__img img-placeholder">
+          <span>📸</span><span>Mother support photo</span>
+        </div>
+        <div class="service-card__body">
+          <div class="service-card__icon" aria-hidden="true">🤱</div>
+          <h3 class="service-card__title">Mother Support</h3>
+          <p class="service-card__text">Postpartum recovery support for you — rest, nutrition guidance, emotional wellbeing, and breastfeeding assistance.</p>
+        </div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-card__img img-placeholder">
+          <span>📸</span><span>Night care photo</span>
+        </div>
+        <div class="service-card__body">
+          <div class="service-card__icon" aria-hidden="true">🌙</div>
+          <h3 class="service-card__title">Night Support</h3>
+          <p class="service-card__text">Overnight caregivers so you can sleep. Your caregiver handles feeds, settling, and monitoring through the night.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="services__all-services" aria-label="Additional services">
+      <div class="service-mini reveal">
+        <div class="service-mini__icon" aria-hidden="true">🍲</div>
+        <div>
+          <p class="service-mini__title">Postpartum Nutrition</p>
+          <p class="service-mini__text">Culturally appropriate meal prep and dietary guidance for recovery</p>
+        </div>
+      </div>
+      <div class="service-mini reveal reveal-delay-1">
+        <div class="service-mini__icon" aria-hidden="true">🧠</div>
+        <div>
+          <p class="service-mini__title">Emotional Wellness</p>
+          <p class="service-mini__text">Compassionate support and check-ins for postpartum mental health</p>
+        </div>
+      </div>
+      <div class="service-mini reveal reveal-delay-2">
+        <div class="service-mini__icon" aria-hidden="true">🌿</div>
+        <div>
+          <p class="service-mini__title">Traditional Practices</p>
+          <p class="service-mini__text">Authentic omugwo traditions — binding, herbs, massage, and rituals</p>
+        </div>
+      </div>
+      <div class="service-mini reveal reveal-delay-3">
+        <div class="service-mini__icon" aria-hidden="true">🤝</div>
+        <div>
+          <p class="service-mini__title">Breastfeeding Support</p>
+          <p class="service-mini__text">Guidance and hands-on help for successful breastfeeding journeys</p>
+        </div>
+      </div>
+      <div class="service-mini reveal reveal-delay-4">
+        <div class="service-mini__icon" aria-hidden="true">🏡</div>
+        <div>
+          <p class="service-mini__title">Household Assistance</p>
+          <p class="service-mini__text">Light housekeeping and errands so you can focus on recovery</p>
+        </div>
+      </div>
+      <div class="service-mini reveal reveal-delay-1">
+        <div class="service-mini__icon" aria-hidden="true">📱</div>
+        <div>
+          <p class="service-mini__title">Omugwo Academy</p>
+          <p class="service-mini__text">Training and certification for aspiring postpartum care professionals</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     TRUST SECTION
+     ============================================ -->
+<section class="trust" aria-label="Care you can trust">
+  <div class="container">
+    <div class="trust__inner">
+      <div>
+        <p class="trust__label reveal">Care You Can Trust</p>
+        <h2 class="trust__headline reveal reveal-delay-1">
+          Here for you,<br><em>every step</em><br>of the way
+        </h2>
+        <p class="trust__text reveal reveal-delay-2">
+          Every Omugwo caregiver goes through thorough background checks, professional training, and cultural competency assessments. We don't just match you with someone — we match you with the right person.
+        </p>
+
+        <ul class="trust__qualities reveal reveal-delay-3" role="list">
+          <li class="trust__quality">
+            <div class="trust__quality-dot" aria-hidden="true"></div>
+            <p class="trust__quality-text"><strong>The Omugwo App booking is made</strong> — Our platform carefully matches you based on location, availability, language, and your specific care needs.</p>
+          </li>
+          <li class="trust__quality">
+            <div class="trust__quality-dot" aria-hidden="true"></div>
+            <p class="trust__quality-text"><strong>The Omugwo caregiver arrives</strong> — Trained, vetted, and briefed on your preferences. Ready to care from day one.</p>
+          </li>
+          <li class="trust__quality">
+            <div class="trust__quality-dot" aria-hidden="true"></div>
+            <p class="trust__quality-text"><strong>Postpartum guidance, support in your language</strong> — We support Yoruba, Igbo, Hausa, and Pidgin-speaking families across Nigeria.</p>
+          </li>
+          <li class="trust__quality">
+            <div class="trust__quality-dot" aria-hidden="true"></div>
+            <p class="trust__quality-text"><strong>Cultural care you can count on</strong> — Our caregivers understand and respect your traditions, practices, and family values.</p>
+          </li>
+        </ul>
+
+        <div class="reveal" style="margin-top:2.5rem;">
+          <a href="#get-started" class="btn btn--primary btn--lg">Find a Caregiver</a>
+        </div>
+      </div>
+
+      <div class="trust__image-grid" aria-hidden="true">
+        <div class="trust__img trust__img--tall img-placeholder">
+          <span>📸</span><span>Caregiver with newborn</span>
+        </div>
+        <div class="trust__img trust__img--wide img-placeholder">
+          <span>📸</span><span>Mother resting</span>
+        </div>
+        <div class="trust__quote-card">
+          <p class="trust__quote-text">"Omugwo gave me the village I thought I had lost. My caregiver was my peace in those first weeks."</p>
+          <p class="trust__quote-author">— Chioma A., Lagos (Beta User)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     STATS SECTION
+     ============================================ -->
+<section class="stats" aria-label="The reality behind the numbers">
+  <div class="container">
+    <div class="stats__header">
+      <p class="stats__label reveal">The Reality Behind the Numbers</p>
+      <h2 class="stats__headline reveal reveal-delay-1">
+        The postpartum care gap in Nigeria is urgent — and it's why we exist
+      </h2>
+    </div>
+
+    <div class="stats__grid" role="list">
+      <div class="stat-item reveal" role="listitem">
+        <div class="stat-item__number"><span data-target="38" data-suffix="%">0%</span></div>
+        <p class="stat-item__label">of mothers lack adequate postpartum support</p>
+        <p class="stat-item__sub">In urban Nigerian households, nearly 4 in 10 new mothers have no consistent postpartum care</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-1" role="listitem">
+        <div class="stat-item__number"><span data-target="6.5" data-suffix="%">0%</span></div>
+        <p class="stat-item__label">postpartum complication rate</p>
+        <p class="stat-item__sub">Many complications are preventable with proper professional support in the first 6 weeks</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-2" role="listitem">
+        <div class="stat-item__number"><span data-target="81" data-prefix="&#8358;" data-suffix="k">&#8358;0</span></div>
+        <p class="stat-item__label">average cost per readmission</p>
+        <p class="stat-item__sub">Preventable readmissions cost families more than quality postpartum care would have</p>
+      </div>
+    </div>
+
+    <p class="stats__source reveal">
+      Sources: <a href="#" target="_blank" rel="noopener">WHO Maternal Health Report 2023</a>, <a href="#" target="_blank" rel="noopener">NIMR Nigeria Postpartum Study</a> — Update with your specific data sources
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================
+     FAQ SECTION
+     ============================================ -->
+<section class="faq" id="faq" aria-label="Frequently asked questions">
+  <div class="container">
+    <div class="faq__inner">
+
+      <div class="faq__sticky">
+        <p class="faq__label reveal">Got Questions?</p>
+        <h2 class="faq__headline reveal reveal-delay-1">Frequently Asked Questions</h2>
+        <p class="faq__intro reveal reveal-delay-2">
+          Everything you need to know about Omugwo care. Can't find your answer? Reach out — we'd love to help.
+        </p>
+        <div class="reveal reveal-delay-3">
+          <a href="#contact" class="btn btn--outline">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="faq__list" role="list">
+
+        <div class="faq__item reveal" role="listitem">
+          <button class="faq__question" aria-expanded="false">
+            What exactly is Omugwo?
+            <span class="faq__chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">
+            <p>Omugwo is a marketplace platform that connects new mothers and families in Nigeria with vetted, trained postpartum caregivers. Drawing from the traditional Igbo practice of "omugwo" — where family comes to support a new mother — we modernize and formalize that care for today's families.</p>
+          </div></div>
+        </div>
+
+        <div class="faq__item reveal reveal-delay-1" role="listitem">
+          <button class="faq__question" aria-expanded="false">
+            How are your caregivers vetted?
+            <span class="faq__chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">
+            <p>All Omugwo caregivers undergo background checks, identity verification, health screenings, and complete our Omugwo Academy training programme. We assess cultural competency, newborn care skills, and emotional intelligence before any caregiver is listed on our platform.</p>
+          </div></div>
+        </div>
+
+        <div class="faq__item reveal reveal-delay-2" role="listitem">
+          <button class="faq__question" aria-expanded="false">
+            What cities is Omugwo available in?
+            <span class="faq__chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">
+            <p>We are currently launching in Lagos, with Abuja and Port Harcourt coming soon. Join the waitlist to be notified when we expand to your city, and let us know your location so we can prioritize accordingly.</p>
+          </div></div>
+        </div>
+
+        <div class="faq__item reveal reveal-delay-3" role="listitem">
+          <button class="faq__question" aria-expanded="false">
+            Is Omugwo only for first-time mothers?
+            <span class="faq__chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">
+            <p>Not at all. Every mother deserves proper postpartum support. Our caregivers serve families welcoming their first child through their fifth, and tailor their support to your specific situation and needs.</p>
+          </div></div>
+        </div>
+
+        <div class="faq__item reveal reveal-delay-1" role="listitem">
+          <button class="faq__question" aria-expanded="false">
+            When will the Omugwo app be available?
+            <span class="faq__chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">
+            <p>We are currently in beta testing. Join our waitlist to be among the first to access the app when it officially launches. Beta users receive priority access, discounted rates, and the opportunity to shape the product.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     CTA SECTION
+     ============================================ -->
+<section class="cta" id="waitlist" aria-label="Join the waitlist">
+  <div class="cta__bg" aria-hidden="true"></div>
+  <div class="container cta__inner">
+    <div class="cta__eyebrow reveal"><span aria-hidden="true">&#10022;</span> Support is coming</div>
+    <h2 class="cta__headline reveal reveal-delay-1">
+      Be the first to<br><em>experience</em><br>Omugwo
+    </h2>
+    <p class="cta__subtext reveal reveal-delay-2">
+      Join our waitlist and be among the first mothers to access trusted, culturally rooted postpartum care in Nigeria. The village is being rebuilt — one family at a time.
+    </p>
+    <div class="cta__actions reveal reveal-delay-3">
+      <a href="#get-started" class="btn btn--white btn--lg">Join the Waitlist</a>
+      <a href="#about" class="btn btn--outline-white btn--lg">Learn More</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__top">
+
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <img src="assets/logo.svg" alt="" width="32" height="32" />
+          <span class="footer__logo-text">Omugwo</span>
+        </div>
+        <p>Thoughtfully building care for you and your baby. Rooted in African tradition, designed for modern families.</p>
+        <div class="footer__social" aria-label="Social media links">
+          <a href="#" class="footer__social-link" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer__col-title">Quick Links</p>
+        <ul class="footer__links" role="list">
+          <li><a href="#home" class="footer__link">Home</a></li>
+          <li><a href="#about" class="footer__link">About</a></li>
+          <li><a href="#services" class="footer__link">Services</a></li>
+          <li><a href="#how-it-works" class="footer__link">How It Works</a></li>
+          <li><a href="#faq" class="footer__link">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__col-title">Contact</p>
+        <ul class="footer__links" role="list">
+          <li><a href="mailto:hello@omugwo.com" class="footer__link">hello@omugwo.com</a></li>
+          <li><a href="tel:+2348000000000" class="footer__link">+234 800 000 0000</a></li>
+          <li><a href="#contact" class="footer__link">Contact Form</a></li>
+          <li><a href="#" class="footer__link">Partner with Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__col-title">Resources</p>
+        <ul class="footer__links" role="list">
+          <li><a href="#" class="footer__link">Omugwo Academy</a></li>
+          <li><a href="#" class="footer__link">Become a Caregiver</a></li>
+          <li><a href="#" class="footer__link">Postpartum Guide</a></li>
+          <li><a href="#" class="footer__link">Press</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2025 Omugwo Digital Enterprise. All rights reserved.</p>
+      <nav class="footer__legal" aria-label="Legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,469 @@
+/* ============================================
+   OMUGWO — Animations & Interactions Layer
+   ============================================ */
+
+/* ── Respect user motion preferences ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================
+   1. KEYFRAMES
+   ============================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes dotProgress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196,103,74,0); }
+  50%       { box-shadow: 0 0 0 8px rgba(196,103,74,0.12); }
+}
+@keyframes drawLine {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* ============================================
+   2. PAGE ENTRANCE — Hero orchestrated load
+   ============================================ */
+.nav {
+  animation: slideDown 0.7s cubic-bezier(0.25, 1, 0.5, 1) both;
+  animation-delay: 0.1s;
+}
+.hero__headline {
+  animation: fadeUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) both;
+  animation-delay: 0.35s;
+}
+.hero__subtext {
+  animation: fadeUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) both;
+  animation-delay: 0.55s;
+}
+.hero__actions {
+  animation: fadeUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) both;
+  animation-delay: 0.72s;
+}
+.hero__badges {
+  animation: fadeUp 0.7s cubic-bezier(0.25, 1, 0.5, 1) both;
+  animation-delay: 0.88s;
+}
+.newsletter-float {
+  animation: fadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) both;
+  animation-delay: 1.05s;
+}
+
+/* Hero elements bypass the JS scroll reveal — use CSS animations directly */
+.hero__headline.reveal,
+.hero__subtext.reveal,
+.hero__actions.reveal,
+.hero__badges.reveal {
+  opacity: 0;
+  transform: none;
+  transition: none;
+  animation-fill-mode: both;
+}
+/* Mark as visible so JS observer doesn't override */
+.hero__headline,
+.hero__subtext,
+.hero__actions,
+.hero__badges {
+  animation-fill-mode: both;
+}
+
+/* ============================================
+   3. NAV — Scroll state + hover interactions
+   ============================================ */
+.nav__pill {
+  transition: padding 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.4s ease,
+              background 0.4s ease;
+}
+.nav.nav--fixed .nav__pill {
+  background: rgba(253, 248, 243, 0.97);
+  box-shadow: 0 8px 40px rgba(44,32,22,0.14), 0 2px 8px rgba(44,32,22,0.06);
+  padding-block: 0.6rem;
+}
+
+/* Animated underline on nav links */
+.nav__link {
+  position: relative;
+}
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--rust);
+  border-radius: 2px;
+  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.nav__link:hover::after { width: 100%; }
+
+/* Logo playful tilt on hover */
+.nav__logo-img {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.nav__logo:hover .nav__logo-img {
+  transform: rotate(-8deg) scale(1.1);
+}
+
+/* ============================================
+   4. BUTTONS — Magnetic + ripple + shimmer
+   ============================================ */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.15s ease,
+              background 0.3s ease;
+}
+
+/* Click ripple */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: inherit;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.btn:active::after {
+  transform: scale(1);
+  opacity: 1;
+  transition: 0s;
+}
+
+/* Rust button shimmer sweep */
+.btn--rust {
+  background-image: linear-gradient(
+    110deg,
+    var(--rust) 0%,
+    var(--rust) 40%,
+    var(--rust-light) 50%,
+    var(--rust) 60%,
+    var(--rust) 100%
+  );
+  background-size: 300% 100%;
+  background-position: left center;
+  transition: background-position 0.6s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn--rust:hover {
+  background-position: right center;
+  box-shadow: 0 6px 24px rgba(196,103,74,0.55);
+}
+
+/* Ghost-white glow */
+.btn--ghost-white {
+  transition: background 0.25s ease, border-color 0.25s ease,
+              box-shadow 0.25s ease, transform 0.15s ease;
+}
+.btn--ghost-white:hover {
+  box-shadow: 0 0 0 4px rgba(253,248,243,0.18);
+}
+
+/* ============================================
+   5. SLIDER DOTS — Animated progress bar
+   ============================================ */
+.hero__dot {
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease, width 0.3s ease;
+}
+.hero__dot--active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.4);
+  border-radius: inherit;
+  transform-origin: left center;
+  animation: dotProgress 5s linear forwards;
+}
+
+/* ============================================
+   6. SCROLL REVEAL — Richer entrances
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cards scale in slightly */
+.service-card.reveal,
+.stat-item.reveal,
+.problem__pain-item.reveal {
+  transform: translateY(20px) scale(0.97);
+  transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.service-card.reveal.visible,
+.stat-item.reveal.visible,
+.problem__pain-item.reveal.visible {
+  transform: translateY(0) scale(1);
+}
+
+/* Steps have more drama */
+.step.reveal {
+  transform: translateY(40px);
+  transition-duration: 0.85s;
+}
+
+/* ============================================
+   7. SERVICE CARDS — 3D tilt + lift
+   ============================================ */
+.service-card {
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.4s ease;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* Service mini — slide + left accent */
+.service-mini {
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  border-left: 3px solid transparent;
+}
+.service-mini:hover {
+  transform: translateX(6px);
+  border-left-color: var(--rust);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================
+   8. HOW IT WORKS — Step hover
+   ============================================ */
+.step {
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: default;
+}
+.step:hover { transform: translateY(-6px); }
+.step__number {
+  transition: background 0.3s ease, border-color 0.3s ease,
+              box-shadow 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.step:hover .step__number {
+  background: rgba(196,103,74,0.3);
+  border-color: var(--rust-light);
+  box-shadow: 0 0 0 6px rgba(196,103,74,0.1);
+  transform: scale(1.1);
+}
+.step__icon {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: block;
+}
+.step:hover .step__icon {
+  transform: scale(1.25) rotate(-5deg);
+}
+
+/* ============================================
+   9. PROBLEM PAIN ITEMS
+   ============================================ */
+.problem__pain-item {
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+}
+.problem__pain-item:hover {
+  transform: translateX(6px);
+}
+.problem__pain-icon {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.3s ease;
+}
+.problem__pain-item:hover .problem__pain-icon {
+  transform: scale(1.15) rotate(-5deg);
+  background: var(--rust-muted);
+}
+
+/* ============================================
+   10. TRUST SECTION
+   ============================================ */
+.trust__quote-card {
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.35s ease;
+}
+.trust__quote-card:hover {
+  transform: translateY(-4px) rotate(-0.8deg);
+  box-shadow: var(--shadow-xl);
+}
+
+.trust__quality {
+  transition: transform 0.25s ease;
+}
+.trust__quality:hover {
+  transform: translateX(4px);
+}
+.trust__quality-dot {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.3s ease;
+}
+.trust__quality:hover .trust__quality-dot {
+  transform: scale(1.6);
+  background: var(--rust-light);
+}
+
+/* ============================================
+   11. STATS — Hover lift + number scale
+   ============================================ */
+.stat-item {
+  transition: background 0.3s ease;
+  cursor: default;
+}
+.stat-item:hover { background: var(--rust-pale); }
+
+.stat-item__number {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              color 0.3s ease;
+  display: block;
+}
+.stat-item:hover .stat-item__number {
+  transform: scale(1.08);
+  color: var(--rust-dark);
+}
+
+/* ============================================
+   12. FAQ — Smooth accordion
+   ============================================ */
+.faq__question {
+  transition: color 0.2s ease, background 0.2s ease;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.faq__question:hover {
+  background: rgba(196,103,74,0.04);
+}
+.faq__item {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease,
+              transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.faq__item:hover {
+  transform: translateX(3px);
+}
+.faq__item.open {
+  transform: none;
+}
+
+/* ============================================
+   13. NEWSLETTER — Focus glow + card lift
+   ============================================ */
+.newsletter-float__row {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.newsletter-float__row:focus-within {
+  border-color: var(--rust);
+  box-shadow: 0 0 0 4px rgba(196,103,74,0.12);
+}
+
+.newsletter-float__card {
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.4s ease;
+}
+.newsletter-float__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 32px 72px rgba(44,32,22,0.2), 0 8px 24px rgba(44,32,22,0.1);
+}
+
+/* ============================================
+   14. FOOTER — Social icons + link slides
+   ============================================ */
+.footer__social-link {
+  transition: background 0.25s ease, color 0.25s ease,
+              transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.footer__social-link:hover {
+  transform: translateY(-4px) scale(1.15);
+}
+
+.footer__link {
+  display: inline-block;
+  transition: color 0.2s ease, padding-left 0.25s ease;
+}
+.footer__link:hover { padding-left: 5px; }
+
+/* ============================================
+   15. SECTION LABELS — Draw-in underline
+   ============================================ */
+.problem__label,
+.services__label,
+.trust__label,
+.stats__label,
+.faq__label,
+.how-it-works__label {
+  position: relative;
+  display: inline-block;
+}
+.problem__label::after,
+.services__label::after,
+.trust__label::after,
+.stats__label::after,
+.faq__label::after,
+.how-it-works__label::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--rust);
+  border-radius: 2px;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.15s;
+}
+.label-visible::after { width: 100% !important; }
+
+/* ============================================
+   16. FLOATING LOGO ANIMATION
+   ============================================ */
+.nav__logo-img {
+  animation: floatY 4s ease-in-out infinite;
+  animation-delay: 2s;
+}
+.nav__logo:hover .nav__logo-img {
+  animation: none;
+  transform: rotate(-8deg) scale(1.1);
+}
+
+/* ============================================
+   17. CTA SECTION — Pulsing glow on button
+   ============================================ */
+.cta .btn--white {
+  animation: pulseGlow 3s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+.cta .btn--white:hover {
+  animation: none;
+}
+
+/* ============================================
+   18. HERO OVERLAY — Scroll darkening handled in JS
+   ============================================ */
+.hero__bg-overlay {
+  transition: opacity 0.5s ease;
+}

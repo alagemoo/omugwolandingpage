@@ -1,0 +1,298 @@
+/* ============================================
+   OMUGWO — Main JavaScript
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Newsletter card — scroll-triggered entrance + float ── */
+  const newsletterCard = document.querySelector('.newsletter-float__card');
+  if (newsletterCard) {
+    new IntersectionObserver(([entry], obs) => {
+      if (entry.isIntersecting) {
+        newsletterCard.classList.add('is-visible');
+        obs.unobserve(newsletterCard);
+      }
+    }, { threshold: 0.3 }).observe(newsletterCard);
+  }
+
+  /* ── Navbar — fix position after hero ── */
+  const nav = document.querySelector('.nav');
+  const hero = document.querySelector('.hero');
+
+  const onScroll = () => {
+    if (!hero) return;
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    nav.classList.toggle('nav--fixed', heroBottom <= 0);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── Mobile menu ── */
+  const hamburger = document.querySelector('.nav__hamburger');
+  const mobileMenu = document.querySelector('.nav__mobile');
+  const spans = hamburger?.querySelectorAll('span');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    hamburger.setAttribute('aria-expanded', isOpen);
+    if (spans) {
+      if (isOpen) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+      } else {
+        spans[0].style.transform = '';
+        spans[1].style.opacity = '';
+        spans[2].style.transform = '';
+      }
+    }
+  });
+
+  document.querySelectorAll('.nav__mobile .nav__link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+      if (spans) {
+        spans[0].style.transform = '';
+        spans[1].style.opacity = '';
+        spans[2].style.transform = '';
+      }
+    });
+  });
+
+  /* ── Hero image slider ── */
+  const slides = document.querySelectorAll('.hero__slide');
+  const dots = document.querySelectorAll('.hero__dot');
+  let currentSlide = 0;
+  let sliderTimer = null;
+
+  const goToSlide = (index) => {
+    slides[currentSlide].classList.remove('hero__slide--active');
+    const prevDot = dots[currentSlide];
+    prevDot.classList.remove('hero__dot--active');
+    void prevDot.offsetWidth; // force reflow to restart dot animation
+
+    currentSlide = (index + slides.length) % slides.length;
+    slides[currentSlide].classList.add('hero__slide--active');
+
+    const activeDot = dots[currentSlide];
+    activeDot.classList.remove('hero__dot--active');
+    void activeDot.offsetWidth;
+    activeDot.classList.add('hero__dot--active');
+  };
+
+  const startSlider = () => {
+    sliderTimer = setInterval(() => goToSlide(currentSlide + 1), 5000);
+  };
+
+  const resetSlider = () => {
+    clearInterval(sliderTimer);
+    startSlider();
+  };
+
+  if (slides.length > 1) {
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => { goToSlide(i); resetSlider(); });
+    });
+    startSlider();
+  }
+
+  /* ── Scroll reveal ── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    // Hero elements use CSS entrance animations — mark visible immediately
+    if (el.closest('.hero')) {
+      el.classList.add('visible');
+      return;
+    }
+    revealObserver.observe(el);
+  });
+
+  /* ── Staggered delays for grid children ── */
+  [
+    '.services__all-services .service-mini',
+    '.how-it-works__steps .step',
+    '.stats__grid .stat-item',
+    '.problem__pain-list .problem__pain-item',
+    '.trust__qualities .trust__quality',
+  ].forEach(selector => {
+    document.querySelectorAll(selector).forEach((el, i) => {
+      el.style.transitionDelay = `${i * 80}ms`;
+    });
+  });
+
+  /* ── Section label draw-in underline ── */
+  document.querySelectorAll(
+    '.problem__label, .services__label, .trust__label, .stats__label, .faq__label, .how-it-works__label'
+  ).forEach(label => {
+    new IntersectionObserver(([entry], obs) => {
+      if (entry.isIntersecting) {
+        label.classList.add('label-visible');
+        obs.unobserve(label);
+      }
+    }, { threshold: 0.8 }).observe(label);
+  });
+
+  /* ── FAQ accordion ── */
+  document.querySelectorAll('.faq__question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq__item');
+      const isOpen = item.classList.contains('open');
+
+      document.querySelectorAll('.faq__item.open').forEach(openItem => {
+        openItem.classList.remove('open');
+        openItem.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ── Stats counter animation ── */
+  const animateCounter = (el, target, suffix = '', prefix = '') => {
+    const duration = 1800;
+    const start = performance.now();
+    const isDecimal = target % 1 !== 0;
+
+    const update = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      const current = eased * target;
+      el.textContent = prefix + (isDecimal ? current.toFixed(1) : Math.round(current)) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  };
+
+  new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        animateCounter(el, parseFloat(el.dataset.target), el.dataset.suffix || '', el.dataset.prefix || '');
+      }
+    });
+  }, { threshold: 0.5 }).observe(
+    ...Array.from(document.querySelectorAll('[data-target]'))
+  );
+
+  document.querySelectorAll('[data-target]').forEach(el => {
+    new IntersectionObserver(([entry], obs) => {
+      if (entry.isIntersecting) {
+        animateCounter(el, parseFloat(el.dataset.target), el.dataset.suffix || '', el.dataset.prefix || '');
+        obs.unobserve(el);
+      }
+    }, { threshold: 0.5 }).observe(el);
+  });
+
+  /* ── Newsletter form ── */
+  document.querySelectorAll('.newsletter-form').forEach(form => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = form.querySelector('input[type="email"]');
+      const btn = form.querySelector('button[type="submit"]');
+      if (!input?.value) return;
+
+      const original = btn.textContent;
+      btn.textContent = "You're in! ✓";
+      btn.style.background = 'var(--sage)';
+      btn.style.boxShadow = '0 2px 12px rgba(122,158,126,0.4)';
+      btn.disabled = true;
+      input.value = '';
+
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '';
+        btn.style.boxShadow = '';
+        btn.disabled = false;
+      }, 3500);
+    });
+  });
+
+  /* ── Magnetic button effect ── */
+  document.querySelectorAll('.btn--rust, .btn--white, .btn--ghost-white').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.12}px, ${y * 0.18}px) translateY(-1px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+
+  /* ── 3D card tilt on mouse move ── */
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `translateY(-6px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg) scale(1.01)`;
+      card.style.transition = 'transform 0.08s ease';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = '';
+    });
+  });
+
+  /* ── Hero overlay darkens on scroll ── */
+  const heroOverlay = document.querySelector('.hero__bg-overlay');
+  window.addEventListener('scroll', () => {
+    if (!heroOverlay) return;
+    const ratio = Math.min(window.scrollY / 500, 1);
+    heroOverlay.style.opacity = (1 + ratio * 0.25).toString();
+  }, { passive: true });
+
+  /* ── Smooth scroll for anchor links ── */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  /* ── Subtle cursor glow on hero (mouse-only devices) ── */
+  if (window.matchMedia('(pointer: fine)').matches) {
+    const heroEl = document.querySelector('.hero');
+    if (heroEl) {
+      const trail = document.createElement('div');
+      trail.style.cssText = `
+        position:fixed; pointer-events:none; z-index:9999;
+        width:10px; height:10px; border-radius:50%;
+        background:rgba(196,103,74,0.45);
+        transform:translate(-50%,-50%);
+        transition:opacity 0.5s ease, left 0.05s linear, top 0.05s linear;
+        opacity:0; mix-blend-mode:screen;
+      `;
+      document.body.appendChild(trail);
+
+      heroEl.addEventListener('mousemove', (e) => {
+        trail.style.left = e.clientX + 'px';
+        trail.style.top = e.clientY + 'px';
+        trail.style.opacity = '1';
+      });
+      heroEl.addEventListener('mouseleave', () => {
+        trail.style.opacity = '0';
+      });
+    }
+  }
+
+});
