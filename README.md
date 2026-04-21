@@ -66,4 +66,3 @@ Both load from Google Fonts CDN in the HTML head.
 
 Works in all modern browsers (Chrome, Firefox, Safari, Edge).
 No build tools required — open `index.html` directly in a browser.
-# omugwolandingpage

@@ -167,59 +167,65 @@
      ============================================ -->
 <section class="problem" id="about" aria-label="The problem we solve">
   <div class="container">
+
     <div class="problem__inner">
 
-      <div>
+      <!-- Left col: headline + pain points + CTA -->
+      <div class="problem__left">
         <p class="problem__label reveal">The Problem</p>
         <h2 class="problem__headline reveal reveal-delay-1">
           Motherhood shouldn't feel <em>overwhelming</em>
         </h2>
-        <p class="problem__intro reveal reveal-delay-2">
-          The weeks after birth are sacred — yet so many Nigerian mothers navigate them without the reliable support they deserve. Whether you're a first-time mum or growing your family, the gaps are real.
-        </p>
 
         <ul class="problem__pain-list" role="list">
           <li class="problem__pain-item reveal reveal-delay-1">
-            <div class="problem__pain-icon" aria-hidden="true">🔍</div>
-            <div>
+            <div class="problem__pain-item-inner">
               <p class="problem__pain-title">No reliable help after delivery</p>
-              <p class="problem__pain-text">Finding trustworthy postpartum support in Nigeria is time-consuming, informal, and often unreliable — with no standard vetting process.</p>
+              <p class="problem__pain-text">When you need support the most, it's often the hardest to find.</p>
             </div>
           </li>
           <li class="problem__pain-item reveal reveal-delay-2">
-            <div class="problem__pain-icon" aria-hidden="true">👩‍👧</div>
-            <div>
+            <div class="problem__pain-item-inner">
               <p class="problem__pain-title">Family support isn't always available</p>
-              <p class="problem__pain-text">Modern life means grandmothers and relatives are often far away or unavailable. The traditional omugwo support system has broken down for many families.</p>
+              <p class="problem__pain-text">Loved ones may care, but they can't always be there when you need them.</p>
             </div>
           </li>
           <li class="problem__pain-item reveal reveal-delay-3">
-            <div class="problem__pain-icon" aria-hidden="true">📋</div>
-            <div>
-              <p class="problem__pain-title">Hiring help feels risky and expensive</p>
-              <p class="problem__pain-text">Without a trusted platform, hiring a caregiver means navigating unverified referrals and hoping for the best — at a critical, vulnerable time.</p>
-            </div>
-          </li>
-          <li class="problem__pain-item reveal reveal-delay-4">
-            <div class="problem__pain-icon" aria-hidden="true">🍼</div>
-            <div>
-              <p class="problem__pain-title">New mothers carry too much alone</p>
-              <p class="problem__pain-text">Sleep deprivation, breastfeeding challenges, postpartum mood changes — without proper support, recovery becomes a struggle instead of a season of joy.</p>
+            <div class="problem__pain-item-inner">
+              <p class="problem__pain-title">Hiring help feels risky or expensive</p>
+              <p class="problem__pain-text">Finding someone you trust shouldn't feel uncertain or out of reach.</p>
             </div>
           </li>
         </ul>
 
-        <div style="margin-top:2.5rem;" class="reveal">
+        <p class="problem__solution reveal reveal-delay-4">
+          We connect you with trusted, experienced caregivers who provide safe, in-home support when you need it most.
+        </p>
+
+        <div class="reveal" style="margin-top: var(--space-8);">
           <a href="#get-started" class="btn btn--primary btn--lg">Find Your Support</a>
         </div>
       </div>
 
-      <div class="problem__image-stack" aria-hidden="true">
-        <div class="problem__img-main img-placeholder">
-          <span>📸</span><span>Mother &amp; newborn photo</span>
+      <!-- Right col: two portrait images side by side -->
+      <div class="problem__images" aria-hidden="true">
+        <div class="problem__img-wrap problem__img-wrap--1">
+          <!--
+            Replace with: <img src="images/problem-1.jpg" alt="" class="problem__img" />
+            Photo tip: Mother with newborn, warm tones, portrait crop
+          -->
+          <div class="problem__img img-placeholder">
+            <img src="images/problem-1.jpg" alt="" class="problem__img" />
+          </div>
         </div>
-        <div class="problem__img-secondary img-placeholder">
-          <span>📸</span><span>Caregiver with baby</span>
+        <div class="problem__img-wrap problem__img-wrap--2">
+          <!--
+            Replace with: <img src="images/problem-2.jpg" alt="" class="problem__img" />
+            Photo tip: Close-up of baby or caregiver, portrait crop
+          -->
+          <div class="problem__img img-placeholder">
+            <img src="images/problem-3.png" alt="" class="problem__img" />
+          </div>
         </div>
       </div>
 
@@ -229,50 +235,154 @@
 
 
 <!-- ============================================
-     HOW IT WORKS
+     HOW IT WORKS — Scroll-driven card stack
      ============================================ -->
-<section class="how-it-works" id="how-it-works" aria-label="How Omugwo works">
-  <div class="how-it-works__bg" aria-hidden="true"></div>
-  <div class="container">
-    <div class="how-it-works__header">
-      <p class="how-it-works__label reveal">Simple &amp; Seamless</p>
-      <h2 class="how-it-works__headline reveal reveal-delay-1">
-        Care in four <em>simple steps</em>
-      </h2>
-    </div>
+<section class="hiw" id="how-it-works" aria-label="How Omugwo works">
 
-    <div class="how-it-works__steps" role="list">
-      <div class="how-it-works__connector" aria-hidden="true"></div>
+  <div class="hiw__sticky-outer">
+    <div class="hiw__sticky">
 
-      <div class="step reveal" role="listitem">
-        <div class="step__number" aria-hidden="true">01</div>
-        <span class="step__icon" aria-hidden="true">🔍</span>
-        <h3 class="step__title">Search</h3>
-        <p class="step__text">Browse verified postpartum caregivers in your area based on your specific needs, language, and budget.</p>
+      <!-- Left: fixed header + progress -->
+      <div class="hiw__left">
+        <p class="hiw__label">Simple &amp; Seamless</p>
+        <h2 class="hiw__headline">
+          Care in four<br><em>simple steps</em>
+        </h2>
+        <p class="hiw__sub">
+          From finding the right caregiver to receiving care at home — Omugwo makes every step feel effortless.
+        </p>
+
+        <!-- Progress dots -->
+        <div class="hiw__progress" aria-hidden="true">
+          <div class="hiw__progress-dot hiw__progress-dot--active" data-step="0"></div>
+          <div class="hiw__progress-dot" data-step="1"></div>
+          <div class="hiw__progress-dot" data-step="2"></div>
+          <div class="hiw__progress-dot" data-step="3"></div>
+        </div>
+
+        <!-- Step counter -->
+        <p class="hiw__counter" aria-live="polite">
+          <span class="hiw__counter-current">01</span>
+          <span class="hiw__counter-sep">/</span>
+          <span class="hiw__counter-total">04</span>
+        </p>
       </div>
 
-      <div class="step reveal reveal-delay-1" role="listitem">
-        <div class="step__number" aria-hidden="true">02</div>
-        <span class="step__icon" aria-hidden="true">✅</span>
-        <h3 class="step__title">Choose</h3>
-        <p class="step__text">Review caregiver profiles, read testimonials, and select the perfect match for your family with confidence.</p>
-      </div>
+      <!-- Right: card stack -->
+      <div class="hiw__stack" aria-label="Steps">
 
-      <div class="step reveal reveal-delay-2" role="listitem">
-        <div class="step__number" aria-hidden="true">03</div>
-        <span class="step__icon" aria-hidden="true">📅</span>
-        <h3 class="step__title">Book</h3>
-        <p class="step__text">Schedule care directly through the app — flexible hours, transparent pricing, and easy rescheduling.</p>
-      </div>
+        <div class="hiw__card hiw__card--1 hiw__card--active" data-card="0" role="listitem">
+          <div class="hiw__card-accent" aria-hidden="true"></div>
+          <div class="hiw__card-inner">
+            <div class="hiw__card-top">
+              <span class="hiw__card-num">01</span>
+              <span class="hiw__card-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="22" cy="20" r="10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M34 34 L29 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M18 20h8M22 16v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </div>
+            <h3 class="hiw__card-title">Search</h3>
+            <p class="hiw__card-text">Browse verified postpartum caregivers near you — filtered by language, availability, and your specific needs.</p>
+            <div class="hiw__card-visual" aria-hidden="true">
+              <div class="hiw__card-pill">🔍 Caregivers near Lagos</div>
+              <div class="hiw__card-pill hiw__card-pill--sm">Igbo-speaking</div>
+              <div class="hiw__card-pill hiw__card-pill--sm">Night support</div>
+            </div>
+          </div>
+        </div>
 
-      <div class="step reveal reveal-delay-3" role="listitem">
-        <div class="step__number" aria-hidden="true">04</div>
-        <span class="step__icon" aria-hidden="true">🏠</span>
-        <h3 class="step__title">Receive Care</h3>
-        <p class="step__text">Your caregiver arrives ready to support you — from newborn care and breastfeeding guidance to household help and emotional support.</p>
+        <div class="hiw__card hiw__card--2" data-card="1" role="listitem">
+          <div class="hiw__card-accent" aria-hidden="true"></div>
+          <div class="hiw__card-inner">
+            <div class="hiw__card-top">
+              <span class="hiw__card-num">02</span>
+              <span class="hiw__card-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="24" cy="18" r="8" stroke="currentColor" stroke-width="2.5"/>
+                  <path d="M10 40c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M32 22l2 2 5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+            <h3 class="hiw__card-title">Choose</h3>
+            <p class="hiw__card-text">Review profiles, read verified testimonials, and choose the caregiver that feels right for your family.</p>
+            <div class="hiw__card-visual" aria-hidden="true">
+              <div class="hiw__card-profile">
+                <div class="hiw__card-avatar"></div>
+                <div class="hiw__card-profile-info">
+                  <p class="hiw__card-profile-name">Adaeze N.</p>
+                  <p class="hiw__card-profile-sub">5 yrs experience · Igbo &amp; English</p>
+                  <div class="hiw__card-stars">★★★★★</div>
+                </div>
+                <div class="hiw__card-badge">✓ Verified</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hiw__card hiw__card--3" data-card="2" role="listitem">
+          <div class="hiw__card-accent" aria-hidden="true"></div>
+          <div class="hiw__card-inner">
+            <div class="hiw__card-top">
+              <span class="hiw__card-num">03</span>
+              <span class="hiw__card-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="8" y="10" width="32" height="32" rx="4" stroke="currentColor" stroke-width="2.5"/>
+                  <path d="M8 18h32" stroke="currentColor" stroke-width="2.5"/>
+                  <path d="M16 6v8M32 6v8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M16 28h4v4h-4z" fill="currentColor" opacity="0.6"/>
+                  <path d="M22 28h4v4h-4z" fill="currentColor" opacity="0.4"/>
+                </svg>
+              </span>
+            </div>
+            <h3 class="hiw__card-title">Book</h3>
+            <p class="hiw__card-text">Schedule care in seconds. Pick your dates, hours, and preferences — with transparent pricing and easy rescheduling.</p>
+            <div class="hiw__card-visual" aria-hidden="true">
+              <div class="hiw__card-booking">
+                <div class="hiw__card-booking-row">
+                  <span>📅</span><span>Mon – Fri, 8am – 6pm</span>
+                </div>
+                <div class="hiw__card-booking-row">
+                  <span>🏠</span><span>In-home · Lekki, Lagos</span>
+                </div>
+                <div class="hiw__card-booking-confirm">Confirm Booking →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hiw__card hiw__card--4" data-card="3" role="listitem">
+          <div class="hiw__card-accent" aria-hidden="true"></div>
+          <div class="hiw__card-inner">
+            <div class="hiw__card-top">
+              <span class="hiw__card-num">04</span>
+              <span class="hiw__card-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M24 8C24 8 12 14 12 24c0 6.627 5.373 12 12 12s12-5.373 12-12c0-10-12-16-12-16z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                  <path d="M19 26l3 3 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+            <h3 class="hiw__card-title">Receive Care</h3>
+            <p class="hiw__card-text">Your caregiver arrives ready — newborn care, breastfeeding support, household help, and emotional presence.</p>
+            <div class="hiw__card-visual" aria-hidden="true">
+              <div class="hiw__card-care-items">
+                <span class="hiw__care-tag">🤱 Breastfeeding support</span>
+                <span class="hiw__care-tag">👶 Newborn care</span>
+                <span class="hiw__care-tag">🌿 Traditional practices</span>
+                <span class="hiw__care-tag">🏡 Household help</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
+
 </section>
 
 

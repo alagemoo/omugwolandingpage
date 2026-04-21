@@ -98,7 +98,93 @@ document.addEventListener('DOMContentLoaded', () => {
     startSlider();
   }
 
-  /* ── Scroll reveal ── */
+  /* ── How It Works — sticky scroll card stack ── */
+  const hiwOuter = document.querySelector('.hiw__sticky-outer');
+  const hiwSticky = document.querySelector('.hiw__sticky');
+  const hiwCards = document.querySelectorAll('.hiw__card');
+  const hiwDots = document.querySelectorAll('.hiw__progress-dot');
+  const hiwCounter = document.querySelector('.hiw__counter-current');
+
+  if (hiwOuter && hiwCards.length) {
+    // Skip on mobile (cards show statically)
+    const isMobile = () => window.innerWidth <= 768;
+    let activeIndex = 0;
+
+    const CARD_ORDER = [0, 1, 2, 3];
+
+    const setCardState = (cards, active) => {
+      cards.forEach((card, i) => {
+        // Remove all state classes
+        card.classList.remove(
+          'hiw__card--active',
+          'hiw__card--behind-1',
+          'hiw__card--behind-2',
+          'hiw__card--behind-3',
+          'hiw__card--exited'
+        );
+
+        if (i < active) {
+          // Cards before active — exited (flew off top)
+          card.classList.add('hiw__card--exited');
+        } else if (i === active) {
+          card.classList.add('hiw__card--active');
+        } else if (i === active + 1) {
+          card.classList.add('hiw__card--behind-1');
+        } else if (i === active + 2) {
+          card.classList.add('hiw__card--behind-2');
+        } else {
+          card.classList.add('hiw__card--behind-3');
+        }
+      });
+
+      // Update dots
+      hiwDots.forEach((dot, i) => {
+        dot.classList.toggle('hiw__progress-dot--active', i === active);
+      });
+
+      // Update counter
+      if (hiwCounter) {
+        hiwCounter.style.opacity = '0';
+        hiwCounter.style.transform = 'translateY(-8px)';
+        setTimeout(() => {
+          hiwCounter.textContent = String(active + 1).padStart(2, '0');
+          hiwCounter.style.opacity = '1';
+          hiwCounter.style.transform = 'translateY(0)';
+        }, 180);
+      }
+    };
+
+    const onScrollHIW = () => {
+      if (isMobile()) return;
+
+      const rect = hiwOuter.getBoundingClientRect();
+      const totalScroll = hiwOuter.offsetHeight - window.innerHeight;
+      const scrolled = -rect.top;
+      const progress = Math.max(0, Math.min(1, scrolled / totalScroll));
+
+      // Tighter zones — card switches happen in first 80% of each zone
+      // so the transition feels responsive, not sluggish
+      const rawZone = progress * 4;
+      const zone = Math.min(3, Math.floor(rawZone));
+
+      if (zone !== activeIndex) {
+        activeIndex = zone;
+        setCardState(hiwCards, activeIndex);
+      }
+    };
+
+    // Init
+    setCardState(hiwCards, 0);
+
+    // Add counter transition style
+    if (hiwCounter) {
+      hiwCounter.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+    }
+
+    window.addEventListener('scroll', onScrollHIW, { passive: true });
+  }
+
+
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
