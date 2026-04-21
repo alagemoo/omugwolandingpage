@@ -1,9 +1,9 @@
-# Omugwo — Landing Page
+# OmugwoApp — Landing Page
 
 ## Project Structure
 
 ```
-omugwo/
+OmugwoApp/
 ├── index.html          ← Main homepage (all sections)
 ├── css/
 │   └── style.css       ← Full design system + all component styles
@@ -41,7 +41,7 @@ All image placeholders are clearly marked in the HTML. Replace in this order:
 
 ## Content to Update
 
-- [ ] Email address in footer: `hello@omugwo.com`
+- [ ] Email address in footer: `hello@OmugwoApp.com`
 - [ ] Phone number in footer
 - [ ] Stats sources (currently placeholder links)
 - [ ] Social media links (Instagram, Twitter, Facebook)

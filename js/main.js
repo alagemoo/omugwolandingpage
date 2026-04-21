@@ -1,5 +1,5 @@
 /* ============================================
-   OMUGWO — Main JavaScript
+   OmugwoApp — Main JavaScript
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -185,10 +185,108 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SERVICES — sticky scroll card reveal
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  const svcOuter  = document.querySelector('.svc__scroll-outer');
+  const svcBadges = document.querySelectorAll('.svc__badge');
+
+  if (svcOuter && window.innerWidth > 768) {
+    const svcItems = Array.from(
+      document.querySelectorAll('[data-svc-index]')
+    ).sort((a, b) => parseInt(a.dataset.svcIndex) - parseInt(b.dataset.svcIndex));
+
+    const TOTAL    = svcItems.length;
+    const VH_EACH  = 40;
+    const TOTAL_VH = VH_EACH * (TOTAL + 0.5);
+
+    svcOuter.style.height = `${TOTAL_VH}vh`;
+
+    let currentIndex = -1; // tracks last revealed index
+
+    const onScrollSvc = () => {
+      const rect        = svcOuter.getBoundingClientRect();
+      const totalScroll = svcOuter.offsetHeight - window.innerHeight;
+      const scrolled    = -rect.top;
+      const progress    = Math.max(0, Math.min(1, scrolled / totalScroll));
+
+      // -1 means nothing shown (before zone), 0–6 means up to that index shown
+      const targetIndex = scrolled <= 0
+        ? -1
+        : Math.min(TOTAL - 1, Math.floor(progress * TOTAL));
+
+      if (targetIndex === currentIndex) return;
+
+      if (targetIndex > currentIndex) {
+        // Scrolling DOWN — reveal items from currentIndex+1 to targetIndex
+        for (let i = currentIndex + 1; i <= targetIndex; i++) {
+          const el = svcItems[i];
+          if (!el) continue;
+          el.classList.remove('svc-out');
+          el.classList.add('svc-in');
+
+          // Badges pop after centre (index 0)
+          if (parseInt(el.dataset.svcIndex) === 0) {
+            setTimeout(() => {
+              svcBadges.forEach((b, bi) => {
+                b.classList.remove('svc-out');
+                setTimeout(() => b.classList.add('svc-in'), bi * 250);
+              });
+            }, 700);
+          }
+        }
+      } else {
+        // Scrolling UP — hide items from currentIndex down to targetIndex+1
+        for (let i = currentIndex; i > targetIndex; i--) {
+          const el = svcItems[i];
+          if (!el) continue;
+          el.classList.remove('svc-in');
+          el.classList.add('svc-out');
+
+          // Hide badges if centre (index 0) is being hidden
+          if (parseInt(el.dataset.svcIndex) === 0) {
+            svcBadges.forEach(b => {
+              b.classList.remove('svc-in');
+              b.classList.add('svc-out');
+            });
+          }
+        }
+      }
+
+      currentIndex = targetIndex;
+    };
+
+    window.addEventListener('scroll', onScrollSvc, { passive: true });
+
+  } else if (svcOuter) {
+    // Mobile: no sticky, reveal all on intersection
+    svcOuter.style.height = 'auto';
+    const svcItems = document.querySelectorAll('[data-svc-index]');
+    new IntersectionObserver(([entry], obs) => {
+      if (entry.isIntersecting) {
+        svcItems.forEach((el, i) => setTimeout(() => el.classList.add('svc-in'), i * 120));
+        setTimeout(() => {
+          svcBadges.forEach((b, bi) => setTimeout(() => b.classList.add('svc-in'), 600 + bi * 200));
+        }, 0);
+        obs.unobserve(svcOuter);
+      }
+    }, { threshold: 0.1 }).observe(svcOuter);
+  }
+
+
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+
+        // Trigger progress bar fill on stat card reveal
+        const bar = entry.target.querySelector('.stat-card__bar[data-width]');
+        if (bar) {
+          setTimeout(() => {
+            bar.style.width = bar.dataset.width + '%';
+          }, 300);
+        }
+
         revealObserver.unobserve(entry.target);
       }
     });
@@ -218,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Section label draw-in underline ── */
   document.querySelectorAll(
-    '.problem__label, .services__label, .trust__label, .stats__label, .faq__label, .how-it-works__label'
+    '.problem__label, .svc__label, .trust__label, .stats__label, .faq__label, .hiw__label'
   ).forEach(label => {
     new IntersectionObserver(([entry], obs) => {
       if (entry.isIntersecting) {
