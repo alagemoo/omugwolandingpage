@@ -1222,3 +1222,28 @@ body.page-findcare {
   .fc-why__grid { grid-template-columns: 1fr; }
   .fc-checkboxes { grid-template-columns: 1fr; }
 }
+
+/* ── Mobile fixes for inner pages ── */
+@media (max-width: 768px) {
+  /* Ensure body padding for fixed nav on inner pages */
+  body.page-about,
+  body.page-services,
+  body.page-contact,
+  body.page-findcare {
+    padding-top: 80px;
+  }
+
+  /* Nav--page pill on mobile */
+  .nav--page .nav__pill {
+    padding: var(--space-2) var(--space-4);
+  }
+
+  /* Page hero */
+  .page-hero { min-height: 48vh; padding-bottom: clamp(2.5rem,8vw,4rem); }
+  .page-hero__headline { font-size: clamp(1.8rem,7vw,3rem); }
+  .page-hero__sub { font-size: var(--text-sm); }
+
+  /* Page CTA */
+  .page-cta__actions { flex-direction: column; align-items: center; }
+  .page-cta__actions .btn { width: 100%; max-width: 320px; justify-content: center; }
+}

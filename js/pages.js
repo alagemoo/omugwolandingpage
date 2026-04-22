@@ -5,41 +5,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ── Mobile menu (shared with main, but re-init for pages) ── */
-  const hamburger  = document.querySelector('.nav__hamburger');
-  const mobileMenu = document.querySelector('.nav__mobile');
-  const spans      = hamburger?.querySelectorAll('span');
-
-  const closeMobile = () => {
-    mobileMenu?.classList.remove('open');
-    document.body.style.overflow = '';
-    hamburger?.setAttribute('aria-expanded', 'false');
-    if (spans) {
-      spans[0].style.transform = '';
-      spans[1].style.opacity   = '';
-      spans[2].style.transform = '';
-    }
-  };
-
-  hamburger?.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-    if (spans) {
-      if (isOpen) {
-        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        spans[1].style.opacity   = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-      } else {
-        closeMobile();
-      }
-    }
-  });
-
-  document.querySelectorAll('.nav__mobile .nav__link').forEach(l => {
-    l.addEventListener('click', closeMobile);
-  });
-
   /* ── Scroll reveal ── */
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

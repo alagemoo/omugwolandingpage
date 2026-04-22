@@ -27,38 +27,59 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ── Mobile menu ── */
-  const hamburger = document.querySelector('.nav__hamburger');
+  /* ── Mobile menu — works on all pages ── */
+  const hamburger  = document.querySelector('.nav__hamburger');
   const mobileMenu = document.querySelector('.nav__mobile');
-  const spans = hamburger?.querySelectorAll('span');
+  const spans      = hamburger?.querySelectorAll('span');
+
+  const closeMobileMenu = () => {
+    if (!mobileMenu) return;
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow  = '';
+    document.body.style.position  = '';
+    document.body.style.width     = '';
+    hamburger?.setAttribute('aria-expanded', 'false');
+    if (spans) {
+      spans[0].style.transform = '';
+      spans[1].style.opacity   = '';
+      spans[2].style.transform = '';
+    }
+  };
 
   hamburger?.addEventListener('click', () => {
+    if (!mobileMenu) return;
     const isOpen = mobileMenu.classList.toggle('open');
+    // Lock scroll when open (prevents body scroll on iOS too)
     document.body.style.overflow = isOpen ? 'hidden' : '';
-    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.position = isOpen ? 'fixed' : '';
+    document.body.style.width    = isOpen ? '100%' : '';
+    hamburger.setAttribute('aria-expanded', String(isOpen));
     if (spans) {
       if (isOpen) {
         spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        spans[1].style.opacity = '0';
+        spans[1].style.opacity   = '0';
         spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
       } else {
-        spans[0].style.transform = '';
-        spans[1].style.opacity = '';
-        spans[2].style.transform = '';
+        closeMobileMenu();
       }
     }
   });
 
-  document.querySelectorAll('.nav__mobile .nav__link').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      document.body.style.overflow = '';
-      if (spans) {
-        spans[0].style.transform = '';
-        spans[1].style.opacity = '';
-        spans[2].style.transform = '';
-      }
-    });
+  // Close on nav link click
+  document.querySelectorAll('.nav__mobile .nav__link, .nav__mobile .btn').forEach(el => {
+    el.addEventListener('click', closeMobileMenu);
+  });
+
+  // Close on backdrop tap (outside menu)
+  mobileMenu?.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) closeMobileMenu();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) {
+      closeMobileMenu();
+    }
   });
 
   /* ── Hero image slider ── */

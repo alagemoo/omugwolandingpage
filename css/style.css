@@ -2651,3 +2651,147 @@ input, textarea { font: inherit; }
   .footer__top { grid-template-columns: 1fr; }
   .footer__bottom { flex-direction: column; align-items: flex-start; }
 }
+
+/* ============================================================
+   MOBILE FIXES — Comprehensive responsive overhaul
+   All breakpoints in one block for clarity
+   ============================================================ */
+
+/* ── Nav pill — prevent overflow on small screens ── */
+.nav__pill {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Inner page nav hamburger spans — dark on light bg ── */
+.nav--page .nav__hamburger span {
+  background: var(--earth);
+  mix-blend-mode: normal;
+}
+
+/* ── Mobile menu close button ── */
+.nav__mobile {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+
+  /* NAV */
+  .nav { padding-top: var(--space-3); left: 0; right: 0; }
+  .container { padding-left: var(--space-4); padding-right: var(--space-4); }
+
+  /* HERO — prevent content bleed */
+  .hero__content {
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+    text-align: center;
+    align-items: center;
+  }
+  .hero__headline {
+    font-size: clamp(1.9rem, 7.5vw, 2.75rem);
+    max-width: 100%;
+  }
+  .hero__subtext { max-width: 100%; font-size: var(--text-sm); }
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+  }
+  .hero__actions .btn { width: 100%; justify-content: center; }
+  .hero__badges { justify-content: center; flex-wrap: wrap; }
+  .hero__slider-dots { right: var(--space-5); }
+
+  /* NEWSLETTER FLOAT */
+  .newsletter-float { margin-top: -3rem; }
+  .newsletter-float__card { margin: 0 var(--space-4); border-radius: var(--radius-lg); }
+  .newsletter-float__row {
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    padding: var(--space-3);
+    gap: var(--space-2);
+  }
+  .newsletter-float__input { text-align: center; }
+  .newsletter-float__row .btn { width: 100%; justify-content: center; }
+
+  /* PROBLEM SECTION */
+  .problem__images { display: none; }
+  .problem__inner { grid-template-columns: 1fr; }
+
+  /* HIW */
+  .hiw__sticky { padding: var(--space-12) var(--space-5); }
+
+  /* SERVICES sticky */
+  .svc__scroll-outer { height: auto !important; }
+  .svc__scroll-inner {
+    position: relative !important;
+    height: auto !important;
+    padding: var(--space-8) 0 var(--space-12);
+  }
+  .svc__body { grid-template-columns: 1fr; gap: var(--space-4); }
+  .svc__centre { display: none; }
+  .svc-card {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+  .svc-card.svc-in, .svc-card.svc-out {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .svc__col--left, .svc__col--right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  /* TRUST */
+  .trust__inner { grid-template-columns: 1fr; }
+  .trust__photos { max-height: 320px; }
+  .trust__photo-wrap--1 { margin-top: var(--space-4); }
+
+  /* STATS */
+  .stats { min-height: auto; padding: clamp(var(--space-12),8vw,var(--space-20)) 0; }
+  .stats__grid { grid-template-columns: 1fr; }
+  .stat-card { min-width: 0; }
+
+  /* FAQ */
+  .faq__grid { grid-template-columns: 1fr; }
+  .faq__contact-card { flex-direction: column; align-items: flex-start; }
+  .faq__contact-card .btn--primary { margin-left: 0; }
+
+  /* CTA */
+  .cta__headline { font-size: clamp(1.8rem, 6vw, 3rem); }
+  .cta__form-row {
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    padding: var(--space-3);
+    gap: var(--space-2);
+  }
+  .cta__submit { width: 100%; justify-content: center; }
+  .cta__proof { flex-direction: column; }
+
+  /* FOOTER */
+  .footer__top { grid-template-columns: 1fr; }
+  .footer__bottom { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+  .footer__legal { flex-wrap: wrap; gap: var(--space-3); }
+}
+
+@media (max-width: 480px) {
+  /* Extra small phones */
+  .nav__pill { padding: var(--space-2) var(--space-4); }
+  .hero__headline { font-size: clamp(1.7rem, 8vw, 2.25rem); }
+  .container { padding-left: var(--space-4); padding-right: var(--space-4); }
+
+  /* Prevent any horizontal scroll */
+  .hiw__card-visual { display: none; }
+  .hiw__card-care-items { flex-wrap: wrap; gap: var(--space-2); }
+
+  /* Stats cards full width */
+  .stat-card__bar-wrap { display: block; }
+
+  /* CTA proof */
+  .cta__proof { padding: var(--space-3) var(--space-4); }
+}
