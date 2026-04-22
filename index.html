@@ -28,7 +28,7 @@
     -->
     <div class="hero__slide hero__slide--active">
       <div class="hero__slide-img hero__slide-placeholder">
-          <img src="images/hero1.png" alt="" class="hero__slide-img" />
+          <img src="images/hero1.jpg" alt="" class="hero__slide-img" />
       </div>
     </div>
     <div class="hero__slide">
@@ -43,12 +43,12 @@
     </div>
     <div class="hero__slide">
       <div class="hero__slide-img hero__slide-placeholder" style="background:linear-gradient(135deg,#4A3A2A,#2C2016,#8A7060);">
-        <img src="images/hero4.png" alt="" class="hero__slide-img" />
+        <img src="images/hero4.jpg" alt="" class="hero__slide-img" />
       </div>
     </div>
     <div class="hero__slide">
       <div class="hero__slide-img hero__slide-placeholder" style="background:linear-gradient(135deg,#4A3A2A,#2C2016,#8A7060);">
-        <img src="images/hero5.png" alt="" class="hero__slide-img" />
+        <img src="images/hero5.jpg" alt="" class="hero__slide-img" />
       </div>
     </div>
     
@@ -76,14 +76,14 @@
         </a>
 
         <ul class="nav__links" role="list">
-          <li><a href="find-care.html" class="nav__link">Find Care</a></li>
-          <li><a href="services.html" class="nav__link">Services</a></li>
-          <li><a href="contact.html" class="nav__link">Contact</a></li>
-          <li><a href="about.html" class="nav__link">About</a></li>
+          <li><a href="/find-care" class="nav__link">Find Care</a></li>
+          <li><a href="/services" class="nav__link">Services</a></li>
+          <li><a href="/contact" class="nav__link">Contact</a></li>
+          <li><a href="/about" class="nav__link">About</a></li>
         </ul>
 
         <div class="nav__actions">
-          <a href="find-care.html" class="btn btn--rust btn--sm">Get Started</a>
+          <a href="/find-care" class="btn btn--rust btn--sm">Get Started</a>
       </div>
       <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -96,14 +96,14 @@
   <!-- Mobile drawer -->
   <div class="nav__mobile" role="dialog" aria-label="Mobile navigation">
     <ul role="list">
-      <li><a href="find-care.html" class="nav__link">Find Care</a></li>
-      <li><a href="services.html" class="nav__link">Services</a></li>
-      <li><a href="contact.html" class="nav__link">Contact</a></li>
-      <li><a href="about.html" class="nav__link">About</a></li>
+      <li><a href="/find-care" class="nav__link">Find Care</a></li>
+      <li><a href="/services" class="nav__link">Services</a></li>
+      <li><a href="/contact" class="nav__link">Contact</a></li>
+      <li><a href="/about" class="nav__link">About</a></li>
     </ul>
     <div style="display:flex;flex-direction:column;gap:1rem;margin-top:auto;">
-      <a href="find-care.html" class="btn btn--outline">Join Waitlist</a>
-      <a href="find-care.html" class="btn btn--rust">Get Started</a>
+      <a href="/find-care" class="btn btn--outline">Join Waitlist</a>
+      <a href="/find-care" class="btn btn--rust">Get Started</a>
     </div>
   </div>
 
@@ -120,7 +120,7 @@
 
     <div class="hero__actions reveal reveal-delay-2">
       <a href="#waitlist" class="btn btn--rust btn--lg">Join the waitlist</a>
-      <a href="#find-care" class="btn btn--ghost-white btn--lg">Become a caregiver</a>
+      <a href="/find-care" class="btn btn--ghost-white btn--lg">Become a caregiver</a>
     </div>
 
     <div class="hero__badges reveal reveal-delay-3">
@@ -150,9 +150,10 @@
       <h3 class="newsletter-float__title">Subscribe to our Newsletter</h3>
       <p class="newsletter-float__sub">Be the first to get the support you deserve, important information and tips that can ease your motherhood journey</p>
       <form class="newsletter-float__form newsletter-form" aria-label="Email newsletter">
+        <input type="hidden" name="_subject" value="New newsletter subscriber — Omugwo" />
         <div class="newsletter-float__row">
           <label for="nl-email" class="sr-only">Email address</label>
-          <input id="nl-email" type="email" class="newsletter-float__input" placeholder="Enter your email" autocomplete="email" required />
+          <input id="nl-email" type="email" name="email" class="newsletter-float__input" placeholder="Enter your email" autocomplete="email" required />
           <button type="submit" class="btn btn--rust">Subscribe</button>
         </div>
         <p class="newsletter-float__disclaimer">No spam. Unsubscribe anytime.</p>
@@ -203,7 +204,7 @@
         </p>
 
         <div class="reveal" style="margin-top: var(--space-8);">
-          <a href="#get-started" class="btn btn--primary btn--lg">Find Your Support</a>
+          <a href="/find-care" class="btn btn--primary btn--lg">Find Your Support</a>
         </div>
       </div>
 
@@ -224,7 +225,7 @@
             Photo tip: Close-up of baby or caregiver, portrait crop
           -->
           <div class="problem__img img-placeholder">
-            <img src="images/problem-3.png" alt="" class="problem__img" />
+            <img src="images/problem-3.jpg" alt="" class="problem__img" />
           </div>
         </div>
       </div>
@@ -511,7 +512,7 @@
 
             <!-- CTA card -->
             <div class="svc-card svc-card--cta" data-svc-index="6" style="--float-delay:0.9s; --float-duration:6.2s;">
-              <a href="#get-started" class="svc-card__cta-link">
+              <a href="/services" class="svc-card__cta-link">
                 <span class="svc-card__cta-text">Explore our services</span>
                 <span class="svc-card__cta-arrow" aria-hidden="true">→</span>
               </a>
@@ -563,7 +564,7 @@
           </div>
         </div>
         <div class="reveal reveal-delay-3">
-          <a href="#get-started" class="btn btn--primary btn--lg">Find a Caregiver</a>
+          <a href="/services" class="btn btn--primary btn--lg">Find a Caregiver</a>
         </div>
       </div>
 
@@ -577,7 +578,7 @@
             Ideal: close portrait of a smiling caregiver, warm neutral background
           -->
           <div class="trust__photo img-placeholder">
-            <img src="images/problem-2.png" alt="" class="trust__photo" />
+            <img src="images/problem-2.jpg" alt="" class="trust__photo" />
           </div>
 
           <!-- Experience badge — top right corner -->
@@ -818,7 +819,7 @@
         </div>
         <p class="faq__contact-title">Still have questions?</p>
         <p class="faq__contact-sub">We're happy to help. Reach out and our team will get back to you within 24 hours.</p>
-        <a href="#contact" class="btn btn--primary btn--sm">Contact Us</a>
+        <a href="/contact" class="btn btn--primary btn--sm">Contact Us</a>
       </div>
 
     </div>
@@ -860,9 +861,10 @@
 
     <!-- Inline email form -->
     <form class="cta__form newsletter-form reveal reveal-delay-3" aria-label="Join waitlist">
+      <input type="hidden" name="_subject" value="New waitlist signup — Omugwo CTA" />
       <div class="cta__form-row">
         <label for="cta-email" class="sr-only">Your email address</label>
-        <input id="cta-email" type="email" class="cta__input" placeholder="Enter your email address" autocomplete="email" required />
+        <input id="cta-email" type="email" name="email" class="cta__input" placeholder="Enter your email address" autocomplete="email" required />
         <button type="submit" class="cta__submit btn--rust btn--lg">
           Join the Waitlist
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -926,20 +928,20 @@
       <div>
         <p class="footer__col-title">Contact</p>
         <ul class="footer__links" role="list">
-          <li><a href="mailto:hello@omugwoApp.com" class="footer__link">hello@omugwoapp.com</a></li>
+          <li><a href="mailto:hello@omugwoapp.com" class="footer__link">hello@omugwoapp.com</a></li>
           <li><a href="tel:+2348000000000" class="footer__link">+234 800 000 0000</a></li>
-          <li><a href="#contact" class="footer__link">Contact Form</a></li>
-          <li><a href="#" class="footer__link">Partner with Us</a></li>
+          <li><a href="/contact" class="footer__link">Contact Form</a></li>
+          <li><a href="/contact" class="footer__link">Partner with Us</a></li>
         </ul>
       </div>
 
       <div>
         <p class="footer__col-title">Resources</p>
         <ul class="footer__links" role="list">
-          <li><a href="#" class="footer__link">Omugwo Academy</a></li>
-          <li><a href="#" class="footer__link">Become a Caregiver</a></li>
-          <li><a href="#" class="footer__link">Postpartum Guide</a></li>
-          <li><a href="#" class="footer__link">Press</a></li>
+          <li><a href="/coming-soon" class="footer__link">Omugwo Academy</a></li>
+          <li><a href="/find-care" class="footer__link">Become a Caregiver</a></li>
+          <li><a href="/services" class="footer__link">Postpartum Guide</a></li>
+          <li><a href="/coming-soon" class="footer__link">Press</a></li>
         </ul>
       </div>
 
@@ -948,9 +950,9 @@
     <div class="footer__bottom">
       <p class="footer__copy">&copy; 2026 Omugwo Digital Enterprise. All rights reserved.</p>
       <nav class="footer__legal" aria-label="Legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Cookie Policy</a>
+        <a href="/coming-soon">Privacy Policy</a>
+        <a href="/coming-soon">Terms of Service</a>
+        <a href="/coming-soon">Cookie Policy</a>
       </nav>
     </div>
   </div>

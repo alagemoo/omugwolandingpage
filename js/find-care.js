@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const successEl  = document.getElementById('fc-success');
 
   if (submitBtn) {
-    submitBtn.addEventListener('click', () => {
+    submitBtn.addEventListener('click', async () => {
       const name  = document.getElementById('fc-name')?.value?.trim();
       const email = document.getElementById('fc-email')?.value?.trim();
       const phone = document.getElementById('fc-phone')?.value?.trim();
@@ -127,18 +127,53 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.textContent = 'Joining…';
       submitBtn.disabled = true;
 
-      // Simulate submission
-      setTimeout(() => {
-        formCard.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-        formCard.style.opacity = '0';
-        formCard.style.transform = 'translateY(-12px) scale(0.98)';
+      // Collect all form data
+      const role     = document.querySelector('input[name="fc-role"]:checked')?.value || 'mother';
+      const city     = document.getElementById('fc-city')?.value    || '';
+      const service  = document.getElementById('fc-service')?.value || '';
+      const experience = document.getElementById('fc-experience')?.value || '';
+      const specialty  = document.getElementById('fc-specialty')?.value  || '';
 
-        setTimeout(() => {
-          formCard.hidden = true;
-          successEl.hidden = false;
-          successEl.style.animation = 'fcFadeUp 0.6s cubic-bezier(0.25,1,0.5,1) forwards';
-        }, 400);
-      }, 1000);
+      const data = new FormData();
+      data.append('name',  name);
+      data.append('email', email);
+      data.append('phone', phone);
+      data.append('role',  role);
+      if (role === 'mother') {
+        data.append('city',    city);
+        data.append('service', service);
+      } else {
+        data.append('experience', experience);
+        data.append('specialty',  specialty);
+      }
+      data.append('_subject', `New Omugwo waitlist signup — ${role}`);
+
+      try {
+        const res = await fetch('https://formspree.io/f/xjgjaenk', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data,
+        });
+
+        if (res.ok) {
+          formCard.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          formCard.style.opacity = '0';
+          formCard.style.transform = 'translateY(-12px) scale(0.98)';
+          setTimeout(() => {
+            formCard.hidden = true;
+            successEl.hidden = false;
+            successEl.style.animation = 'fcFadeUp 0.6s cubic-bezier(0.25,1,0.5,1) forwards';
+          }, 400);
+        } else {
+          submitBtn.textContent = 'Failed — try again';
+          submitBtn.disabled = false;
+          setTimeout(() => { submitBtn.textContent = 'Join the waitlist'; }, 3000);
+        }
+      } catch {
+        submitBtn.textContent = 'No connection — try again';
+        submitBtn.disabled = false;
+        setTimeout(() => { submitBtn.textContent = 'Join the waitlist'; }, 3000);
+      }
     });
   }
 

@@ -374,27 +374,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 }).observe(el);
   });
 
-  /* ── Newsletter form ── */
+  /* ── Newsletter form — Formspree ── */
   document.querySelectorAll('.newsletter-form').forEach(form => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const input = form.querySelector('input[type="email"]');
-      const btn = form.querySelector('button[type="submit"]');
+      const btn   = form.querySelector('button[type="submit"]');
       if (!input?.value) return;
 
       const original = btn.textContent;
-      btn.textContent = "You're in! ✓";
-      btn.style.background = 'var(--sage)';
-      btn.style.boxShadow = '0 2px 12px rgba(122,158,126,0.4)';
+      btn.textContent = 'Sending…';
       btn.disabled = true;
-      input.value = '';
 
-      setTimeout(() => {
-        btn.textContent = original;
+      try {
+        const res = await fetch('https://formspree.io/f/xjgjaenk', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form),
+        });
+
+        if (res.ok) {
+          btn.textContent = "You're in! ✓";
+          btn.style.background = 'var(--sage)';
+          btn.style.boxShadow = '0 2px 12px rgba(122,158,126,0.4)';
+          input.value = '';
+          setTimeout(() => {
+            btn.textContent = original;
+            btn.style.background = '';
+            btn.style.boxShadow = '';
+            btn.disabled = false;
+          }, 3500);
+        } else {
+          btn.textContent = 'Try again';
+          btn.style.background = '';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Try again';
         btn.style.background = '';
-        btn.style.boxShadow = '';
         btn.disabled = false;
-      }, 3500);
+      }
     });
   });
 

@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       el.addEventListener('input', () => { el.style.borderBottomColor = ''; });
     });
 
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
 
       const name    = document.getElementById('ct-name')?.value.trim();
@@ -114,20 +114,40 @@ document.addEventListener('DOMContentLoaded', () => {
       submitTxt.textContent = 'Sending…';
       submitBtn.classList.add('ct-submit--loading');
 
-      /* Simulate async send */
-      setTimeout(() => {
+      /* Send to Formspree */
+      try {
+        const data = new FormData();
+        data.append('name',    name);
+        data.append('email',   email);
+        data.append('phone',   document.getElementById('ct-phone')?.value.trim() || '');
+        data.append('subject', subject);
+        data.append('message', message);
+
+        const res = await fetch('https://formspree.io/f/xjgjaenk', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data,
+        });
+
         submitTxt.textContent = 'Send Message';
         submitBtn.classList.remove('ct-submit--loading');
-        success.classList.add('ct-success--visible');
-        form.reset();
-        if (counter) counter.textContent = '0 / 600';
 
-        /* Scroll success into view */
-        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-        /* Auto-hide after 6s */
-        setTimeout(() => success.classList.remove('ct-success--visible'), 6000);
-      }, 1200);
+        if (res.ok) {
+          success.classList.add('ct-success--visible');
+          form.reset();
+          if (counter) counter.textContent = '0 / 600';
+          success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          setTimeout(() => success.classList.remove('ct-success--visible'), 6000);
+        } else {
+          submitTxt.textContent = 'Failed — try again';
+          setTimeout(() => { submitTxt.textContent = 'Send Message'; }, 3000);
+        }
+      } catch {
+        submitTxt.textContent = 'Send Message';
+        submitBtn.classList.remove('ct-submit--loading');
+        submitTxt.textContent = 'No connection — try again';
+        setTimeout(() => { submitTxt.textContent = 'Send Message'; }, 3000);
+      }
     });
   }
 
