@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Page Not Found — Omugwo</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rust:    #C4674A;
+      --rust-dk: #A0503A;
+      --earth:   #2C2016;
+      --cream:   #FDF8F3;
+      --sage:    #7BBE87;
+      --muted:   #9C8272;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--earth);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Animated background orbs ── */
+    .orb {
+      position: fixed; border-radius: 50%;
+      filter: blur(80px); pointer-events: none; z-index: 0;
+    }
+    .orb--1 { width: 420px; height: 420px; background: rgba(196,103,74,0.12); top: -100px; right: -80px; animation: drift1 14s ease-in-out infinite; }
+    .orb--2 { width: 320px; height: 320px; background: rgba(123,190,135,0.1);  bottom: -80px; left: -60px; animation: drift2 18s ease-in-out infinite; }
+
+    @keyframes drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-40px,30px)} }
+    @keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,-30px)} }
+
+    /* ── Minimal nav ── */
+    .nav {
+      position: relative; z-index: 10;
+      padding: 1.25rem 2rem;
+      display: flex; align-items: center;
+    }
+    .nav__logo {
+      display: flex; align-items: center; gap: 0.6rem;
+      text-decoration: none; color: var(--earth);
+    }
+    .nav__logo-text {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em;
+    }
+
+    /* ── Main content ── */
+    .main {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: 2rem; position: relative; z-index: 1;
+    }
+
+    .card {
+      background: rgba(254,252,250,0.85);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(63,59,54,0.08);
+      border-radius: 32px;
+      padding: clamp(2.5rem, 6vw, 4rem) clamp(2rem, 6vw, 4rem);
+      max-width: 560px; width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(44,32,22,0.08), 0 2px 8px rgba(44,32,22,0.04);
+      animation: cardIn 0.7s cubic-bezier(0.25,1,0.5,1) both;
+    }
+    @keyframes cardIn {
+      from { opacity:0; transform: translateY(28px) scale(0.97); }
+      to   { opacity:1; transform: translateY(0) scale(1); }
+    }
+
+    .ghost-num {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(5rem, 18vw, 9rem);
+      font-weight: 700; line-height: 1;
+      letter-spacing: -0.06em;
+      color: var(--rust);
+      opacity: 0.1;
+      margin-bottom: -1rem;
+      display: block;
+      animation: ghostPulse 4s ease-in-out infinite;
+    }
+    @keyframes ghostPulse { 0%,100%{opacity:0.1} 50%{opacity:0.16} }
+
+    .icon {
+      font-size: 3.25rem;
+      display: block;
+      margin-bottom: 1.25rem;
+      animation: iconFloat 3s ease-in-out infinite;
+    }
+    @keyframes iconFloat {
+      0%,100%{transform:translateY(0)}  50%{transform:translateY(-8px)}
+    }
+
+    h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.6rem, 4vw, 2.25rem);
+      font-weight: 700; letter-spacing: -0.03em;
+      color: var(--earth); margin-bottom: 0.75rem;
+    }
+
+    .sub {
+      font-size: clamp(0.875rem, 2vw, 1rem);
+      color: var(--muted); font-weight: 300; line-height: 1.75;
+      max-width: 38ch; margin: 0 auto 2.25rem;
+    }
+
+    /* ── Actions ── */
+    .actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.925rem; font-weight: 600;
+      padding: 0.8rem 1.65rem;
+      border-radius: 9999px; text-decoration: none;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+    }
+    .btn--rust { background: var(--rust); color: #fff; }
+    .btn--rust:hover { background: var(--rust-dk); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(196,103,74,0.38); }
+    .btn--ghost { background: transparent; color: var(--earth); border: 1.5px solid rgba(44,32,22,0.18); }
+    .btn--ghost:hover { background: rgba(44,32,22,0.05); transform: translateY(-3px); }
+
+    /* ── Quick links ── */
+    .links {
+      margin-top: 2.25rem; padding-top: 1.5rem;
+      border-top: 1px solid rgba(44,32,22,0.08);
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1.5rem;
+    }
+    .links a {
+      font-size: 0.8rem; color: var(--muted);
+      text-decoration: none; transition: color 0.2s ease;
+    }
+    .links a:hover { color: var(--rust); }
+
+    /* ── Footer ── */
+    .foot {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 1.25rem;
+      font-size: 0.72rem; color: var(--muted); font-weight: 300;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb--1" aria-hidden="true"></div>
+  <div class="orb orb--2" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <a href="/" class="nav__logo">
+      <img src="/assets/logo1.svg" alt="" width="26" height="26" />
+      <span class="nav__logo-text">Omugwo</span>
+    </a>
+  </nav>
+
+  <main class="main">
+    <div class="card">
+
+      <span class="ghost-num" aria-hidden="true">404</span>
+      <span class="icon" role="img" aria-label="leaf">🌿</span>
+
+      <h1>Page not found</h1>
+      <p class="sub">
+        The village you're looking for doesn't live here. Let's get you back to the right path.
+      </p>
+
+      <div class="actions">
+        <a href="/" class="btn btn--rust">Back to Home</a>
+        <a href="/find-care" class="btn btn--ghost">Find Care</a>
+      </div>
+
+      <nav class="links" aria-label="Other pages">
+        <a href="/about">About Us</a>
+        <a href="/services">Services</a>
+        <a href="/contact">Contact</a>
+        <a href="/find-care">Join Waitlist</a>
+      </nav>
+
+    </div>
+  </main>
+
+  <footer class="foot">
+    &copy; 2026 Omugwo Digital Enterprise. All rights reserved.
+  </footer>
+
+</body>
+</html>

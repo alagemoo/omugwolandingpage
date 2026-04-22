@@ -346,36 +346,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Stats counter animation ── */
   const animateCounter = (el, target, suffix = '', prefix = '') => {
-    const duration = 1800;
-    const start = performance.now();
+    const duration  = 1800;
+    const start     = performance.now();
     const isDecimal = target % 1 !== 0;
-
-    const update = (now) => {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
+    const tick = (now) => {
+      const p       = Math.min((now - start) / duration, 1);
+      const eased   = 1 - Math.pow(1 - p, 4);
       const current = eased * target;
       el.textContent = prefix + (isDecimal ? current.toFixed(1) : Math.round(current)) + suffix;
-      if (progress < 1) requestAnimationFrame(update);
+      if (p < 1) requestAnimationFrame(tick);
     };
-    requestAnimationFrame(update);
+    requestAnimationFrame(tick);
   };
 
-  new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        animateCounter(el, parseFloat(el.dataset.target), el.dataset.suffix || '', el.dataset.prefix || '');
-      }
-    });
-  }, { threshold: 0.5 }).observe(
-    ...Array.from(document.querySelectorAll('[data-target]'))
-  );
-
+  // One observer per counter element — fires once, then disconnects
   document.querySelectorAll('[data-target]').forEach(el => {
     new IntersectionObserver(([entry], obs) => {
       if (entry.isIntersecting) {
-        animateCounter(el, parseFloat(el.dataset.target), el.dataset.suffix || '', el.dataset.prefix || '');
+        animateCounter(
+          el,
+          parseFloat(el.dataset.target),
+          el.dataset.suffix || '',
+          el.dataset.prefix || ''
+        );
         obs.unobserve(el);
       }
     }, { threshold: 0.5 }).observe(el);

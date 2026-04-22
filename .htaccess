@@ -1,0 +1,157 @@
+# ============================================================
+#  OMUGWO — Apache .htaccess
+#  For shared hosting / cPanel / Apache 2.4+
+# ============================================================
+
+Options -Indexes
+Options +FollowSymLinks
+RewriteEngine On
+
+
+# ================================================================
+# 1. FORCE HTTPS
+# ================================================================
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+
+# ================================================================
+# 2. FORCE NON-WWW  (omugwo.com, not www.omugwo.com)
+#    To force www instead, swap these two blocks.
+# ================================================================
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+
+# ================================================================
+# 3. CLEAN URLs — strip .html extension
+#    /about.html  →  /about
+#    /services    →  serves services.html transparently
+# ================================================================
+
+# Pass through real files and directories (css, js, images, etc.)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Redirect browser if .html is in the URL bar  (301 permanent)
+RewriteCond %{THE_REQUEST} \s/(.+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Internally serve the .html file when no extension is present
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+
+# ================================================================
+# 4. REMOVE TRAILING SLASH from page URLs
+#    /about/  →  /about
+# ================================================================
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{THE_REQUEST} \s(.+?)/+[\s?]
+RewriteRule ^ %1 [R=301,L]
+
+
+# ================================================================
+# 5. CUSTOM ERROR PAGES
+# ================================================================
+ErrorDocument 404 /404.html
+ErrorDocument 403 /index.html
+ErrorDocument 500 /index.html
+
+
+# ================================================================
+# 6. SECURITY HEADERS
+# ================================================================
+<IfModule mod_headers.c>
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+
+  # Content Security Policy — allows Google Fonts (used in style.css)
+  Header always set Content-Security-Policy "\
+    default-src 'self'; \
+    script-src 'self' 'unsafe-inline'; \
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; \
+    font-src 'self' https://fonts.gstatic.com; \
+    img-src 'self' data: https:; \
+    connect-src 'self'; \
+    frame-ancestors 'none'; \
+    base-uri 'self'; \
+    form-action 'self'"
+
+  # HSTS — only enable after confirming HTTPS is fully working
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+
+# ================================================================
+# 7. BROWSER CACHING
+# ================================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  ExpiresByType text/html              "access plus 1 hour"
+  ExpiresByType text/css               "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript        "access plus 1 year"
+  ExpiresByType image/jpeg             "access plus 1 year"
+  ExpiresByType image/png              "access plus 1 year"
+  ExpiresByType image/webp             "access plus 1 year"
+  ExpiresByType image/svg+xml          "access plus 1 year"
+  ExpiresByType image/x-icon           "access plus 1 year"
+  ExpiresByType font/woff              "access plus 1 year"
+  ExpiresByType font/woff2             "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  ExpiresDefault                       "access plus 1 month"
+</IfModule>
+
+
+# ================================================================
+# 8. GZIP COMPRESSION
+# ================================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css
+  AddOutputFilterByType DEFLATE application/javascript text/javascript
+  AddOutputFilterByType DEFLATE application/json image/svg+xml
+  AddOutputFilterByType DEFLATE font/woff font/woff2
+</IfModule>
+
+
+# ================================================================
+# 9. PROTECT SENSITIVE FILES
+# ================================================================
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(env|log|sql|bak|sh|lock|gitignore)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+
+# ================================================================
+# 10. MIME TYPES
+# ================================================================
+<IfModule mod_mime.c>
+  AddType text/css               .css
+  AddType application/javascript .js
+  AddType image/svg+xml          .svg
+  AddType image/webp             .webp
+  AddType font/woff              .woff
+  AddType font/woff2             .woff2
+</IfModule>
+
+
+# ================================================================
+# 11. DISABLE ETags + SET CHARSET
+# ================================================================
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+FileETag None
+AddDefaultCharset UTF-8

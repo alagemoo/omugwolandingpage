@@ -32,6 +32,7 @@
 
   /* Type Scale */
   --font-display: 'Fraunces', Georgia, serif;
+  --font-display2: 'Montserrat', sans-serif;
   --font-body:    'DM Sans', sans-serif;
 
   --text-xs:   clamp(0.75rem,  1.5vw, 0.813rem);
@@ -502,7 +503,7 @@ input, textarea { font: inherit; }
 
 .newsletter-float {
   position: relative;
-  z-index: 20;
+  z-index: 2;
   margin-top: -5rem;
   padding-bottom: var(--space-8);
 }
@@ -1888,7 +1889,7 @@ input, textarea { font: inherit; }
 
 /* ── Big number ── */
 .stat-card__number {
-  font-family: var(--font-display);
+  font-family: var(--font-display2);
   font-size: clamp(2.4rem, 4.5vw, 3.4rem);
   font-weight: 700;
   color: #3F3B36;
