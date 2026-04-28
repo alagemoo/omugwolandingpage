@@ -1223,27 +1223,109 @@ body.page-findcare {
   .fc-checkboxes { grid-template-columns: 1fr; }
 }
 
-/* ── Mobile fixes for inner pages ── */
+/* ============================================================
+   INNER PAGES — Responsive overhaul
+   ============================================================ */
+
+/* Body top padding for fixed nav on all inner pages */
+body.page-about,
+body.page-services,
+body.page-contact,
+body.page-findcare {
+  padding-top: 80px;
+}
+
+@media (max-width: 1100px) {
+
+  /* About */
+  .ab-hero__inner     { grid-template-columns: 1fr; }
+  .ab-hero__stat-card { max-width: 100%; margin-left: 0; }
+  .ab-origin__inner   { grid-template-columns: 1fr; }
+  .ab-origin__images  { min-height: 300px; }
+  .ab-split           { grid-template-columns: 1fr; }
+  .ab-values__grid    { grid-template-columns: 1fr 1fr; }
+  .ab-team__grid      { grid-template-columns: 1fr 1fr; }
+
+  /* Services */
+  .sv-stats__grid { grid-template-columns: 1fr 1fr; }
+  .sv-stats__grid .sv-stat-card:last-child { grid-column: 1 / -1; }
+  .sv-grid        { grid-template-columns: 1fr 1fr; }
+  .sv-approach__inner { grid-template-columns: 1fr; }
+
+  /* Contact */
+  .ct-hero__inner { grid-template-columns: 1fr; }
+  .ct-faq__grid   { grid-template-columns: 1fr; }
+
+  /* Find Care */
+  .fc-hero__inner { grid-template-columns: 1fr; }
+  .fc-why__grid   { grid-template-columns: 1fr 1fr; }
+  .fc-why__grid .fc-why-card:last-child { grid-column: 1 / -1; }
+}
+
 @media (max-width: 768px) {
-  /* Ensure body padding for fixed nav on inner pages */
-  body.page-about,
-  body.page-services,
-  body.page-contact,
-  body.page-findcare {
-    padding-top: 80px;
-  }
 
-  /* Nav--page pill on mobile */
-  .nav--page .nav__pill {
-    padding: var(--space-2) var(--space-4);
-  }
+  /* ── NAV shared ── */
+  .nav--page .nav__pill { padding: var(--space-2) var(--space-4); }
 
-  /* Page hero */
-  .page-hero { min-height: 48vh; padding-bottom: clamp(2.5rem,8vw,4rem); }
-  .page-hero__headline { font-size: clamp(1.8rem,7vw,3rem); }
-  .page-hero__sub { font-size: var(--text-sm); }
+  /* ── About ── */
+  .ab-hero { padding-top: 6rem; min-height: auto; }
+  .ab-hero__headline { font-size: clamp(2rem, 8vw, 3rem); }
+  .ab-hero__sub      { font-size: var(--text-sm); }
+  .ab-hero__pills    { justify-content: flex-start; flex-wrap: wrap; }
+  .ab-origin__inner  { grid-template-columns: 1fr; }
+  .ab-origin__images { min-height: 260px; }
+  .ab-origin__img-accent { width: 42%; }
+  .ab-values__grid   { grid-template-columns: 1fr; }
+  .ab-split          { grid-template-columns: 1fr; min-height: auto; }
+  .ab-team__grid     { grid-template-columns: 1fr; }
+  .ab-cta__actions   { flex-direction: column; align-items: center; }
+  .ab-cta__actions .btn { width: 100%; max-width: 300px; justify-content: center; }
+  .ab-mini-stats     { flex-wrap: wrap; gap: var(--space-3); }
+  .ab-mini-stat__div { display: none; }
 
-  /* Page CTA */
-  .page-cta__actions { flex-direction: column; align-items: center; }
-  .page-cta__actions .btn { width: 100%; max-width: 320px; justify-content: center; }
+  /* ── Services page ── */
+  .sv-hero { min-height: auto; padding-bottom: clamp(2.5rem,8vw,4rem); }
+  .sv-hero__headline { font-size: clamp(1.8rem,7vw,2.8rem); }
+  .sv-stats__grid { grid-template-columns: 1fr; }
+  .sv-stats__grid .sv-stat-card:last-child { grid-column: auto; }
+  .sv-grid        { grid-template-columns: 1fr; }
+  .sv-approach__inner { grid-template-columns: 1fr; }
+  .sv-steps       { gap: var(--space-3); }
+  .sv-cta__actions { flex-direction: column; align-items: center; }
+  .sv-cta__actions .btn { width: 100%; max-width: 300px; justify-content: center; }
+
+  /* ── Contact page ── */
+  .ct-hero { min-height: auto; padding-top: 5.5rem; }
+  .ct-hero__inner { grid-template-columns: 1fr; gap: var(--space-8); }
+  .ct-hero__headline { font-size: clamp(2rem,7vw,3rem); }
+  .ct-form-card { padding: var(--space-5) var(--space-4); }
+  .ct-form__row { grid-template-columns: 1fr; }
+  .ct-faq__grid { grid-template-columns: 1fr; }
+  .ct-channels  { gap: var(--space-2); }
+
+  /* ── Find Care page ── */
+  .fc-hero { padding-top: 5.5rem; min-height: auto; }
+  .fc-hero__inner { grid-template-columns: 1fr; gap: var(--space-8); }
+  .fc-headline { font-size: clamp(2rem,8vw,3rem); }
+  .fc-form-card { padding: var(--space-5) var(--space-4); }
+  .fc-why__grid { grid-template-columns: 1fr; }
+  .fc-why__grid .fc-why-card:last-child { grid-column: auto; }
+  .fc-role-toggle__options { gap: var(--space-4); }
+}
+
+@media (max-width: 480px) {
+
+  /* About */
+  .ab-hero__headline { font-size: clamp(1.8rem,9vw,2.5rem); }
+  .ab-origin__img-accent { display: none; }
+
+  /* Services */
+  .sv-hero__headline { font-size: clamp(1.6rem,8vw,2.2rem); }
+  .sv-stat-card__tickers { height: 32px; }
+
+  /* Contact */
+  .ct-hero__headline { font-size: clamp(1.8rem,8vw,2.5rem); }
+
+  /* Find Care */
+  .fc-headline { font-size: clamp(1.8rem,8vw,2.5rem); }
 }

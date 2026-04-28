@@ -1015,3 +1015,18 @@
   .ab-mini-stats { flex-direction: column; gap: 0.75rem; }
   .ab-mini-stat__div { width: 40px; height: 1px; }
 }
+
+/* ── Laptop screen fixes (900px–1200px) ── */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .ab-hero__inner   { gap: clamp(2rem, 4vw, 4rem); }
+  .ab-hero__headline { font-size: clamp(2.4rem, 4.5vw, 3.5rem); }
+  .ab-origin__inner { gap: clamp(2rem, 5vw, 5rem); }
+  .ab-values__grid  { gap: 1rem; }
+  .ab-team__grid    { gap: 1.25rem; }
+}
+
+/* ── background-attachment:fixed on iOS ── */
+@media (max-width: 1024px) {
+  .ab-quote { background-attachment: scroll; }
+  .ab-cta   { background-attachment: scroll; }
+}

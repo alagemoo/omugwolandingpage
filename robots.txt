@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+Disallow: /css/
+Disallow: /js/
+Disallow: /assets/
+Disallow: /images/
+Disallow: /404
+Disallow: /coming-soon
+
+# Explicitly allow all public pages
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /contact
+Allow: /find-care
+
+Sitemap: https://omugwoapp.com/sitemap.xml

@@ -377,3 +377,10 @@
   .ct-form__row { grid-template-columns: 1fr; }
   .ct-form-card { padding: 1.75rem 1.25rem; }
 }
+
+/* ── Laptop screen fixes ── */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .ct-hero__inner { gap: clamp(2rem, 4vw, 4rem); }
+  .ct-hero__headline { font-size: clamp(2.2rem, 4vw, 3rem); }
+  .ct-form-card { padding: var(--space-6) var(--space-6); }
+}

@@ -723,3 +723,10 @@
   .fc-why__grid .fc-why-card:last-child { grid-column: auto; }
   .fc-form-card { padding: 1.75rem 1.25rem 1.5rem; }
 }
+
+/* ── Laptop screen fixes ── */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .fc-hero__inner { gap: clamp(2rem, 4vw, 4rem); }
+  .fc-headline    { font-size: clamp(2.4rem, 4.5vw, 3.5rem); }
+  .fc-why__grid   { gap: 1rem; }
+}

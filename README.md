@@ -10,7 +10,7 @@ OmugwoApp/
 ├── js/
 │   └── main.js         ← Scroll animations, FAQ, nav, counters
 ├── assets/
-│   └── logo.svg        ← Placeholder logo (replace with final)
+│   └── logo3.svg        ← Placeholder logo (replace with final)
 └── images/             ← Drop your images here (see placeholders below)
 ```
 

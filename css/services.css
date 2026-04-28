@@ -305,3 +305,11 @@
 ══════════════════════════════════════════ */
 @media (max-width:900px) { .sv-stats__grid { grid-template-columns:1fr 1fr; } .sv-stats__grid .sv-stat-card:last-child { grid-column:1/-1; } }
 @media (max-width:600px) { .sv-stats__grid { grid-template-columns:1fr; } .sv-stats__grid .sv-stat-card:last-child { grid-column:auto; } }
+
+/* ── Laptop screen fixes ── */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .sv-hero__headline { font-size: clamp(2rem, 4vw, 3rem); }
+  .sv-stats__grid    { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .sv-grid           { gap: 1rem; }
+  .sv-approach__inner { gap: clamp(2rem, 5vw, 4rem); }
+}
